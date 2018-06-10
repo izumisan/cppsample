@@ -1,0 +1,14 @@
+# ルート直下を全て無視し、Git管理するものはホワイトリストに入れる.
+/*/
+
+# ホワイトリスト
+!/NUnitCpp/
+
+# 共通設定
+.vs/
+bin/
+obj/
+packages/
+[Dd]ebug/
+[Rr]elease/
+[Tt]est[Rr]esult*/
