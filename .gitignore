@@ -13,3 +13,4 @@ packages/
 [Dd]ebug/
 [Rr]elease/
 [Tt]est[Rr]esult*/
+*.vcxproj.user
