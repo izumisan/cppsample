@@ -2,6 +2,7 @@
 /*/
 
 # ホワイトリスト
+!/GoogleTestSample/
 !/NUnitCpp/
 
 # 共通設定

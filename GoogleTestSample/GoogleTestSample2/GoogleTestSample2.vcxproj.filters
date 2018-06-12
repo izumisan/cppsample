@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="googletest">
+      <UniqueIdentifier>{f7b0f081-abf6-483a-a1d6-c782cdb951f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{71a7d3c7-eeea-4cbf-af90-5b6754a77aeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="googletest\src">
+      <UniqueIdentifier>{57b579e8-9e74-445a-80ec-15620789eb21}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\hogetest.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="googletest\googletest-release-1.8.0\googletest\src\gtest_main.cc">
+      <Filter>googletest\src</Filter>
+    </ClCompile>
+    <ClCompile Include="googletest\googletest-release-1.8.0\googletest\src\gtest-all.cc">
+      <Filter>googletest\src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
