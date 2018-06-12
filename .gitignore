@@ -2,6 +2,7 @@
 /*/
 
 # ホワイトリスト
+!/GoogleTestSample/
 !/NUnitCpp/
 
 # 共通設定
@@ -12,3 +13,4 @@ packages/
 [Dd]ebug/
 [Rr]elease/
 [Tt]est[Rr]esult*/
+*.vcxproj.user
