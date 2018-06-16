@@ -5,6 +5,7 @@
 
 #include "counter.h"
 
+using namespace System;
 using namespace NUnit::Framework;
 
 namespace NUnitCpp
@@ -30,7 +31,7 @@ public:
 
 public:
     [Test]
-    void setCountの確認()
+    void Test螻樊ｧ縺ｮ蛻ｩ逕ｨ()
     {
         foo::Counter counter( 0.0 );
         counter.setCount( 1.23 );
@@ -41,12 +42,30 @@ public:
     [TestCase( 0.0, 1.0, 1.0 )]
     [TestCase( 1.1, 2.2, 3.3 )]
     [TestCase( -1.5, -0.5, -2.0 )]
-    void addの確認( double v1, double v2, double expected )
+    void TestCase螻樊ｧ縺ｮ蛻ｩ逕ｨ( double v1, double v2, double expected )
     {
         foo::Counter counter;
         double actual = counter.add( v1 ).add( v2 ).count();
 
         Assert::That( actual, Is::EqualTo( expected )->Within( 0.000001 ) );
+    }
+
+    [Test]
+    [Property( "val0", 1.0 )]
+    [Property( "val1", 2.0 )]
+    [Property( "val2", 3.0 )]
+    [Property( "expected", 6.0 )]
+    void Property螻樊ｧ縺ｮ蛻ｩ逕ｨ()
+    {
+        TestContext^ context = TestContext::CurrentContext;
+        const double val0 = Double::Parse( context->Test->Properties->Get( "val0" )->ToString() );
+        const double val1 = Double::Parse( context->Test->Properties->Get( "val1" )->ToString() );
+        const double val2 = Double::Parse( context->Test->Properties->Get( "val2" )->ToString() );
+        const double expected = Double::Parse( context->Test->Properties->Get( "expected" )->ToString() );
+
+        double actual = foo::Counter( val0 ).add( val1 ).add( val2 ).count();
+        
+        Assert::That( actual, Is::EqualTo( expected ) );
     }
 };
 
