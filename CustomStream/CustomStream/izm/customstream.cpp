@@ -22,6 +22,16 @@ CustomStream::~CustomStream()
 {
 }
 
+//CustomStream& CustomStream::operator << ( const int value )
+//{
+//    return this->operator<<( std::to_string( value ) );
+//}
+
+//CustomStream& CustomStream::operator << ( const double value )
+//{
+//    return this->operator<<( std::to_string( value ) );
+//}
+
 /*!
   @brief  ‘}“ü‰‰ŽZŽq
 */
