@@ -2,6 +2,7 @@
 /*/
 
 # ホワイトリスト
+!/CustomStream/
 !/GoogleTestSample/
 !/NUnitCpp/
 
