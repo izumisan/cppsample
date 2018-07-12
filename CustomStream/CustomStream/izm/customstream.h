@@ -29,6 +29,9 @@ public:
     }
     
     CustomStream& operator << ( const std::string& str );
+
+    // CustomStreamを引数にとりCustromStreamを返す関数を受け取る
+    // 挿入演算子のオーバーロード（クラスメソッドとして定義）
     CustomStream& operator << ( CustomStream& ( *manip )( CustomStream& ) );
 
 public:
