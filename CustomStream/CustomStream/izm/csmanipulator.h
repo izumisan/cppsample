@@ -26,7 +26,7 @@ class callerInfo
     friend CustomStream& operator << ( CustomStream& cs, callerInfo caller );
 
 public:
-    callerInfo( const std::string& fname, const long line );
+    callerInfo( const std::string& fname, const long line, bool excludeDirectoryName = false );
 
 private:
     CustomStream& operator ()( CustomStream& cs );
@@ -39,6 +39,7 @@ private:
 // cs << izm::callerInfo( __FILE__, __LINE__ ) ‚ð
 // cs << CALLERINFO ‚ÆÈ—ª‚·‚é‚½‚ß‚Ìƒ}ƒNƒ’è‹`
 #define CALLERINFO ( izm::callerInfo( __FILE__, __LINE__ ) )
+#define CALLERINFO_S ( izm::callerInfo( __FILE__, __LINE__, true ) )
 
 } // namespace izm
 

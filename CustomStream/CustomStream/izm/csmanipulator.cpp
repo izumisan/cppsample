@@ -32,10 +32,23 @@ CustomStream& operator << ( CustomStream& cs, callerInfo caller )
 /*!
   @brief  コンストラクタ
 */
-callerInfo::callerInfo( const std::string& fname, const long line )
+callerInfo::callerInfo( const std::string& fname, const long line, bool excludeDirectoryName )
     : m_fname( fname )
     , m_line( line )
 {
+    if ( excludeDirectoryName )
+    {
+        // ファイル名を抽出する
+        const auto&& lastDelimiter = m_fname.find_last_of( "/\\" );
+        if ( lastDelimiter != std::string::npos )
+        {
+            const auto&& lastIndex = m_fname.size() - 1;
+            if ( lastDelimiter < lastIndex )
+            {
+                m_fname = m_fname.substr( lastDelimiter + 1 );
+            }
+        }
+    }
 }
 
 /*!

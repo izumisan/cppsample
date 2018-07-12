@@ -14,5 +14,8 @@ int main()
     cs << izm::callerInfo( __FILE__, __LINE__ ) << izm::endl;
     cs << CALLERINFO << izm::endl;
 
+    cs << izm::callerInfo( __FILE__, __LINE__, true ) << izm::endl;
+    cs << CALLERINFO_S << izm::endl;
+
     return 0;
 }
