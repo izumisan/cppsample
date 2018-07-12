@@ -21,8 +21,6 @@ public:
     virtual ~CustomStream();
 
 public:
-    //CustomStream& operator << ( const int value );
-    //CustomStream& operator << ( const double value );
     template<class Tvalue> CustomStream& operator << ( const Tvalue value )
     {
         std::stringstream ss;
@@ -41,10 +39,10 @@ private:
     std::ofstream m_ofs;
 };
 
-// マニピュレータ
-CustomStream& endl( CustomStream& cs );
-
 } // namespace izm
+
+// マニピュレータ
+#include "csmanipulator.h"
 
 #endif // IZM_CUSTOMSTREAM_H
 

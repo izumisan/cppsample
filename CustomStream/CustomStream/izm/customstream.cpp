@@ -22,16 +22,6 @@ CustomStream::~CustomStream()
 {
 }
 
-//CustomStream& CustomStream::operator << ( const int value )
-//{
-//    return this->operator<<( std::to_string( value ) );
-//}
-
-//CustomStream& CustomStream::operator << ( const double value )
-//{
-//    return this->operator<<( std::to_string( value ) );
-//}
-
 /*!
   @brief  挿入演算子
 */
@@ -67,16 +57,6 @@ CustomStream& CustomStream::eol()
 void CustomStream::flush()
 {
     m_ofs.flush();
-}
-
-/*!
-  @brief  CustomStreamに改行コードを出力するマニピュレータ
-*/
-CustomStream& endl( CustomStream& cs )
-{
-    cs.eol();
-    cs.flush();
-    return cs;
 }
 
 } // namespace izm

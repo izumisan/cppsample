@@ -10,9 +10,15 @@
     <ClCompile Include="izm\customstream.cpp">
       <Filter>izm</Filter>
     </ClCompile>
+    <ClCompile Include="izm\csmanipulator.cpp">
+      <Filter>izm</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="izm\customstream.h">
+      <Filter>izm</Filter>
+    </ClInclude>
+    <ClInclude Include="izm\csmanipulator.h">
       <Filter>izm</Filter>
     </ClInclude>
   </ItemGroup>

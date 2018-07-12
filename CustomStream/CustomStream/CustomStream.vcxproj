@@ -19,10 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="izm\csmanipulator.cpp" />
     <ClCompile Include="izm\customstream.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="izm\csmanipulator.h" />
     <ClInclude Include="izm\customstream.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
