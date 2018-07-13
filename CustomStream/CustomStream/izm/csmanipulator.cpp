@@ -2,6 +2,8 @@
   @file  csmanipulator.cpp
 */
 #include <ctime>
+#include <cstdarg>
+#include <cstring>
 #include "csmanipulator.h"
 
 namespace izm
@@ -29,18 +31,7 @@ CustomStream& timestamp( CustomStream& cs )
     return cs << buff;
 }
 
-/*!
-  @brief  CustomStreamクラスに対する挿入演算子のオーバーロード
-*/
-CustomStream& operator << ( CustomStream& cs, callerInfo caller )
-{
-    // callerInfo::operator()が定義されているので、
-    // 変数callerは関数オブジェクト
-    return caller( cs );
-}
-
-
-// callerInfoクラス
+// callerInfo
 //------------------------------------------------------------------------------
 /*!
   @brief  コンストラクタ
@@ -73,7 +64,52 @@ callerInfo::callerInfo( const std::string& fileName,
 */
 CustomStream& callerInfo::operator()( CustomStream& cs )
 {
-    return cs << m_fileName << "(" << m_lineNumber << ")" << ":" << m_funcName << ":";
+    return cs << printf( "%s(%d) %s:", m_fileName.c_str(), m_lineNumber, m_funcName.c_str() );
+}
+
+/*!
+  @brief  CustomStreamクラスに対する挿入演算子のオーバーロード
+*/
+CustomStream& operator << ( CustomStream& cs, callerInfo manip )
+{
+    // callerInfo::operator()が定義されているので、
+    // 変数manipは関数オブジェクト
+    return manip( cs );
+}
+
+// printf
+//______________________________________________________________________________
+/*!
+  @brief  コンストラクタ
+*/
+printf::printf( const char* format, ... )
+    : m_buff()
+{
+    char buff[1024] = {};
+    memset( buff, 0x00, sizeof( buff ) );
+
+    va_list valist;
+    va_start( valist, format );
+    vsnprintf( buff, sizeof( buff ), format, valist );
+    va_end( valist );
+
+    m_buff = std::string( buff );
+}
+
+/*!
+  @brief  printf::operator()
+*/
+CustomStream& printf::operator ()( CustomStream& cs )
+{
+    return cs << m_buff;
+}
+
+/*!
+  @brief  printfクラスを引数にとるCustomStreamクラスの挿入演算子
+*/
+CustomStream& operator << ( CustomStream& cs, printf manip )
+{
+    return manip( cs );
 }
 
 } // namespace izm

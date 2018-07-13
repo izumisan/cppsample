@@ -31,7 +31,7 @@ class callerInfo
 {
     // CustomStreamクラスの挿入演算子のオーバーロード（グローバル関数として定義）
     // (callerInfo::operator()（privateメソッド）にアクセスするので、friend関数として定義)
-    friend CustomStream& operator << ( CustomStream& cs, callerInfo caller );
+    friend CustomStream& operator << ( CustomStream& cs, callerInfo manip );
 
 public:
     callerInfo( const std::string& fileName,
@@ -52,6 +52,21 @@ private:
 // cs << CALLERINFO と省略するためのマクロ定義
 #define CALLERINFO ( izm::callerInfo( __FILE__, __LINE__, __func__, true ) )
 #define CALLERINFO_L ( izm::callerInfo( __FILE__, __LINE__,__func__, false ) )
+
+/*!
+  @class printfマニピュレーター
+*/
+class printf
+{
+    friend CustomStream& operator << ( CustomStream& cs, printf manip );
+
+public:
+    printf( const char* format, ... );
+private:
+    CustomStream& operator ()( CustomStream& cs );
+private:
+    std::string m_buff;
+};
 
 } // namespace izm
 
