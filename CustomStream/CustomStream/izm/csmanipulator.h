@@ -10,15 +10,19 @@
 namespace izm
 {
 
-// 引数を取らないマニピュレータ
+// 引数を取らないマニピュレーター
 //______________________________________________________________________________
-
+/*!
+  @fn  endlマニピュレーター
+*/
 CustomStream& endl( CustomStream& cs );
 
 
-// 引数を取るマニピュレータ
+// 引数を取るマニピュレーター
 //______________________________________________________________________________
-
+/*!
+  @class  callerInfoマニピュレーター
+*/
 class callerInfo
 {
     // CustomStreamクラスの挿入演算子のオーバーロード（グローバル関数として定義）
@@ -26,20 +30,24 @@ class callerInfo
     friend CustomStream& operator << ( CustomStream& cs, callerInfo caller );
 
 public:
-    callerInfo( const std::string& fname, const long line, bool excludeDirectoryName = false );
+    callerInfo( const std::string& fileName,
+                const long lineNumber,
+                const std::string& funcName,
+                bool excludeDirectoryName = true );
 
 private:
     CustomStream& operator ()( CustomStream& cs );
 
 private:
-    std::string m_fname;
-    long m_line;
+    std::string m_fileName;
+    long m_lineNumber;
+    std::string m_funcName;
 };
 
-// cs << izm::callerInfo( __FILE__, __LINE__ ) を
+// cs << izm::callerInfo( __FILE__, __LINE__, __func__ ) を
 // cs << CALLERINFO と省略するためのマクロ定義
-#define CALLERINFO ( izm::callerInfo( __FILE__, __LINE__ ) )
-#define CALLERINFO_S ( izm::callerInfo( __FILE__, __LINE__, true ) )
+#define CALLERINFO ( izm::callerInfo( __FILE__, __LINE__, __func__, true ) )
+#define CALLERINFO_L ( izm::callerInfo( __FILE__, __LINE__,__func__, false ) )
 
 } // namespace izm
 

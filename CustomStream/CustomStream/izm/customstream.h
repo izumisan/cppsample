@@ -12,7 +12,7 @@ namespace izm
 {
 
 /*!
-    標準出力とファイルの両方に出力する自作ストリーム
+  @class  標準出力とファイルの両方に出力する自作ストリーム
 */
 class CustomStream
 {

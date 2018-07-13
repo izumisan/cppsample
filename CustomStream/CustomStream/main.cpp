@@ -11,11 +11,11 @@ int main()
        << 1.23 << izm::endl
        << 0.1234567890 << izm::endl;
 
-    cs << izm::callerInfo( __FILE__, __LINE__ ) << izm::endl;
+    cs << izm::callerInfo( __FILE__, __LINE__, __func__ ) << izm::endl;
     cs << CALLERINFO << izm::endl;
 
-    cs << izm::callerInfo( __FILE__, __LINE__, true ) << izm::endl;
-    cs << CALLERINFO_S << izm::endl;
+    cs << izm::callerInfo( __FILE__, __LINE__, __func__, false ) << izm::endl;
+    cs << CALLERINFO_L << izm::endl;
 
     return 0;
 }

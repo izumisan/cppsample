@@ -32,20 +32,24 @@ CustomStream& operator << ( CustomStream& cs, callerInfo caller )
 /*!
   @brief  コンストラクタ
 */
-callerInfo::callerInfo( const std::string& fname, const long line, bool excludeDirectoryName )
-    : m_fname( fname )
-    , m_line( line )
+callerInfo::callerInfo( const std::string& fileName,
+                        const long lineNumber,
+                        const std::string& funcName,
+                        bool excludeDirectoryName )
+    : m_fileName( fileName )
+    , m_lineNumber( lineNumber )
+    , m_funcName( funcName )
 {
     if ( excludeDirectoryName )
     {
         // ファイル名を抽出する
-        const auto&& lastDelimiter = m_fname.find_last_of( "/\\" );
+        const auto&& lastDelimiter = m_fileName.find_last_of( "/\\" );
         if ( lastDelimiter != std::string::npos )
         {
-            const auto&& lastIndex = m_fname.size() - 1;
-            if ( lastDelimiter < lastIndex )
+            const auto&& startIndex = lastDelimiter + 1;
+            if ( startIndex < m_fileName.size() )
             {
-                m_fname = m_fname.substr( lastDelimiter + 1 );
+                m_fileName = m_fileName.substr( startIndex );
             }
         }
     }
@@ -56,7 +60,7 @@ callerInfo::callerInfo( const std::string& fname, const long line, bool excludeD
 */
 CustomStream& callerInfo::operator()( CustomStream& cs )
 {
-    return cs << m_fname << "(" << m_line << ")";
+    return cs << m_fileName << "(" << m_lineNumber << ")" << ":" << m_funcName << ":";
 }
 
 } // namespace izm
