@@ -17,6 +17,10 @@ namespace izm
 */
 CustomStream& endl( CustomStream& cs );
 
+/*!
+  @fn  timestampマニピュレーター
+*/
+CustomStream& timestamp( CustomStream& cs );
 
 // 引数を取るマニピュレーター
 //______________________________________________________________________________

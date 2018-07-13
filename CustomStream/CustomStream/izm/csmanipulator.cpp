@@ -1,6 +1,7 @@
 /*!
   @file  csmanipulator.cpp
 */
+#include <ctime>
 #include "csmanipulator.h"
 
 namespace izm
@@ -14,6 +15,18 @@ CustomStream & endl( CustomStream& cs )
     cs.eol();
     cs.flush();
     return cs;
+}
+
+/*!
+  @brief  CustomStreamにタイムスタンプを出力するマニピュレーター
+*/
+CustomStream& timestamp( CustomStream& cs )
+{
+    time_t t = time( nullptr );
+    const tm* now = localtime( &t );
+    char buff[] = "YYYY-MM-DD hh:mm:ss";
+    strftime( buff, sizeof( buff ), "%Y-%m-%d %H:%M:%S", now );
+    return cs << buff;
 }
 
 /*!
