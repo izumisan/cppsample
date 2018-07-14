@@ -12,7 +12,7 @@ namespace izm
 {
 
 /*!
-    標準出力とファイルの両方に出力する自作ストリーム
+  @class  標準出力とファイルの両方に出力する自作ストリーム
 */
 class CustomStream
 {
@@ -21,8 +21,6 @@ public:
     virtual ~CustomStream();
 
 public:
-    //CustomStream& operator << ( const int value );
-    //CustomStream& operator << ( const double value );
     template<class Tvalue> CustomStream& operator << ( const Tvalue value )
     {
         std::stringstream ss;
@@ -31,20 +29,32 @@ public:
     }
     
     CustomStream& operator << ( const std::string& str );
+
+    // CustomStreamを引数にとりCustromStreamを返す関数を受け取る
+    // 挿入演算子のオーバーロード（クラスメソッドとして定義）
     CustomStream& operator << ( CustomStream& ( *manip )( CustomStream& ) );
+
+public:
+    void setOnceEvery( const int x );
 
 public:
     CustomStream& eol();
     void flush();
 
 private:
+    bool isTiming() const;
+
+private:
     std::ofstream m_ofs;
+    unsigned long long m_eolCount;
+    int m_onceEveryX;
+    unsigned long long m_baseCount;
 };
 
-// マニピュレータ
-CustomStream& endl( CustomStream& cs );
-
 } // namespace izm
+
+// マニピュレータ
+#include "csmanipulator.h"
 
 #endif // IZM_CUSTOMSTREAM_H
 
