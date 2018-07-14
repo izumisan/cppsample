@@ -20,5 +20,17 @@ int main()
     cs << izm::callerInfo( __FILE__, __LINE__, __func__, false ) << izm::endl;
     cs << CALLERINFO_L << izm::endl;
 
+    cs.setOnceEvery( 10 );
+    for ( int i = 0; i < 100; ++i )
+    {
+        cs << i << izm::endl;
+    }
+
+    cs << izm::once( 5 ) << "once(5)" << izm::endl;
+    for ( int i = 0; i < 50; ++i )
+    {
+        cs << i << izm::endl;
+    }
+
     return 0;
 }

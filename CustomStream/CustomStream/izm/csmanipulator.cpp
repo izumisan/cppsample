@@ -112,4 +112,31 @@ CustomStream& operator << ( CustomStream& cs, printf manip )
     return manip( cs );
 }
 
+// once
+//______________________________________________________________________________
+/*!
+  @brief  コンストラクタ
+*/
+once::once( const int onceEveryX )
+    : m_value( onceEveryX )
+{
+}
+
+/*!
+  @brief  once::operator()
+*/
+CustomStream& once::operator()( CustomStream& cs )
+{
+    cs.setOnceEvery( m_value );
+    return cs;
+}
+
+/*!
+  @brief  onceマニピュレーター用挿入演算子
+*/
+CustomStream& operator << ( CustomStream& cs, once manip )
+{
+    return manip( cs );
+}
+
 } // namespace izm

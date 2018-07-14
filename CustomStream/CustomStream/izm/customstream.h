@@ -35,11 +35,20 @@ public:
     CustomStream& operator << ( CustomStream& ( *manip )( CustomStream& ) );
 
 public:
+    void setOnceEvery( const int x );
+
+public:
     CustomStream& eol();
     void flush();
 
 private:
+    bool isTiming() const;
+
+private:
     std::ofstream m_ofs;
+    unsigned long long m_eolCount;
+    int m_onceEveryX;
+    unsigned long long m_baseCount;
 };
 
 } // namespace izm

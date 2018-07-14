@@ -68,6 +68,21 @@ private:
     std::string m_buff;
 };
 
+/*!
+  @class onceマニピュレーター
+*/
+class once
+{
+    friend CustomStream& operator << ( CustomStream& cs, once manip );
+
+public:
+    once( const int onceEveryX );
+private:
+    CustomStream& operator ()( CustomStream& cs );
+private:
+    int m_value;
+};
+
 } // namespace izm
 
 #endif // IZM_CSMANIPULATOR_H
