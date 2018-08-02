@@ -4,6 +4,7 @@
 # ホワイトリスト
 !/CustomStream/
 !/GoogleTestSample/
+!/JsonForModernCpp/
 !/NUnitCpp/
 
 # 共通設定
