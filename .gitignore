@@ -6,6 +6,7 @@
 !/GoogleTestSample/
 !/JsonForModernCpp/
 !/NUnitCpp/
+!/UserDefinedLiterals/
 
 # 共通設定
 .vs/
