@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{458a2d00-f89d-497a-81aa-9bbb14672b32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{c2c3bb25-046f-4d61-8522-e6ba6f2c83e9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\foo.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\foolibrary.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\foo.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="include\foolibrary.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ifoo.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
