@@ -3,15 +3,18 @@
 
 namespace foo
 {
+namespace FooLibrary
+{
 
-IFoo* createFoo()
+IFoo* create()
 {
     return new Foo();
 }
 
-void deleteFoo( IFoo* ptr )
+void destroy( IFoo* ptr )
 {
-    delete ptr;
+    delete static_cast<Foo*>( ptr );
 }
 
+} // namespace FooLibrary
 } // namespace foo

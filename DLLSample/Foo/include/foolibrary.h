@@ -11,13 +11,16 @@
 
 namespace foo
 {
+namespace FooLibrary
+{
 
 extern "C"
 {
-    DLLEXPORT IFoo* createFoo();
-    DLLEXPORT void deleteFoo( IFoo* ptr );
+    DLLEXPORT IFoo* create();
+    DLLEXPORT void destroy( IFoo* ptr );
 }
 
+} // namespace FooLibrary
 } // namespace foo
 
 #endif // FOOLIBRARY_H
