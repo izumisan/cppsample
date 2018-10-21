@@ -3,6 +3,7 @@
 
 # ホワイトリスト
 !/CustomStream/
+!/DLLSample/
 !/GoogleTestSample/
 !/JsonForModernCpp/
 !/NUnitCpp/
