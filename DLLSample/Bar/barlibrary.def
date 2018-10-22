@@ -1,0 +1,4 @@
+LIBRARY Bar
+
+EXPORTS
+	defExportMethod
