@@ -2,16 +2,22 @@
 
 # Overview
 
-- Foo
+- Foo（Foo.dll）
     - DLLサンプル
 - FooLoader
     - DLLの静的リンク
     - プロジェクト参照を追加するだけで、そのままリンクされる
 - FooLoader2
     - DLLの動的リンク
-    - `LoadLibrary`でDLLをロード
-    - `GetProcAddress`で関数ポインタを取得
-    - `FreeLibrary`でDLLをアンロード
+    - `LoadLibrary()`でDLLをロード
+    - `GetProcAddress()`で関数ポインタを取得
+    - `FreeLibrary()`でDLLをアンロード
+- Bar（Bar.dll）
+    - 呼び出し規約`cdecl`メソッドのエクスポート
+    - 呼び出し規約`stdcall`メソッドのエクスポート
+    - モジュール定義ファイルによるエクスポート
+- BarLoader
+    - Bar.dllを利用する実行ファイル
 
 # 呼び出し規約
 
@@ -22,7 +28,7 @@
 - stdcall
     - Windows APIの呼び出し規約
     - `WINAPI`マクロは、`__stdcall`に展開される
-    - エクスポート関数が`foo@4`のように修飾されるので、動的ロード時の関数名指定時、エクスポート名を別途確認する必要がある
+    - エクスポート関数が`_foo@4`のように修飾されるので、動的ロード時の関数名指定時、エクスポート名を別途確認する必要がある
 - thiscall
     - メンバ関数の呼び出し規約
 
