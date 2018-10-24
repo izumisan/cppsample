@@ -18,6 +18,8 @@
     - モジュール定義ファイルによるエクスポート
 - BarLoader
     - Bar.dllを利用する実行ファイル
+- BarLoaderCS
+    - Bar.dll（C++）を利用するC#プログラム
 
 # 呼び出し規約
 
