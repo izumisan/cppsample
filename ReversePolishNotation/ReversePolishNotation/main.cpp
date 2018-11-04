@@ -17,7 +17,7 @@ int main()
 
     {
         auto&& rpn = rpn::ReversePolishNotation();
-        auto&& expression = std::vector<std::string> { "1", "2", "+" };
+        auto&& expression = std::vector<std::string> { "1", "2", "+", "3", "+" };  // 1 + 2 + 3
 
         for ( auto&& x : expression )
         {
@@ -27,6 +27,45 @@ int main()
         double ret = rpn.calculate();
 
         print( expression, ret  );
+    }
+    {
+        auto&& rpn = rpn::ReversePolishNotation();
+        auto&& expression = std::vector<std::string>{ "1", "2", "-", "3", "-" };  // 1 - 2 - 3
+
+        for ( auto&& x : expression )
+        {
+            rpn.add( x );
+        }
+
+        double ret = rpn.calculate();
+
+        print( expression, ret );
+    }
+    {
+        auto&& rpn = rpn::ReversePolishNotation();
+        auto&& expression = std::vector<std::string>{ "1", "2", "*", "3", "*" };  // 1 * 2 * 3
+
+        for ( auto&& x : expression )
+        {
+            rpn.add( x );
+        }
+
+        double ret = rpn.calculate();
+
+        print( expression, ret );
+    }
+    {
+        auto&& rpn = rpn::ReversePolishNotation();
+        auto&& expression = std::vector<std::string>{ "1", "2", "/", "3", "/" };  // 1 / 2 / 3
+
+        for ( auto&& x : expression )
+        {
+            rpn.add( x );
+        }
+
+        double ret = rpn.calculate();
+
+        print( expression, ret );
     }
 
     return 0;

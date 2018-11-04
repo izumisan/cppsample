@@ -1,3 +1,4 @@
+#include <cassert>
 #include <stack>
 #include "reversepolishnotation.h"
 
@@ -12,19 +13,46 @@ const std::map<std::string, std::function<double( double, double )>> ReversePoli
     { "/", []( double x, double y ) { return x / y; } }
 };
 
+// static
+//------------------------------------------------------------------------------
+/*!
+*/
+double ReversePolishNotation::calculate( const std::string& expression, const std::string& delimiter )
+{
+    return ReversePolishNotation( expression, delimiter ).calculate();
+}
+
+// special members
+//------------------------------------------------------------------------------
+/*!
+*/
 ReversePolishNotation::ReversePolishNotation()
 {
 }
+/*!
+*/
+ReversePolishNotation::ReversePolishNotation( const std::string& expression, const std::string& delimiter )
+{
+    //@@@ expression‚ðdelimiter‚Å•ªŠ„‚·‚é
 
+    assert( !"Not implementation !!!" );
+}
+/*!
+*/
 ReversePolishNotation::~ReversePolishNotation()
 {
 }
 
+// public
+//------------------------------------------------------------------------------
+/*!
+*/
 void ReversePolishNotation::add( const std::string& token )
 {
     m_tokens.push_back( token );
 }
-
+/*!
+*/
 double ReversePolishNotation::calculate()
 {
     auto&& stack = std::stack<double>();
@@ -52,6 +80,10 @@ double ReversePolishNotation::calculate()
     return stack.top();
 }
 
+// private
+//------------------------------------------------------------------------------
+/*!
+*/
 bool ReversePolishNotation::isOperator( const std::string& token ) const
 {
     bool ret = false;
