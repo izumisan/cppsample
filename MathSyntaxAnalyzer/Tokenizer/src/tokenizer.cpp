@@ -31,6 +31,10 @@ std::string Tokenizer::current() const
 
 void Tokenizer::parse( const std::string& expression )
 {
+    //@@@ TODO
+    // スペースを削除してしまうのではなく、
+    // スペースで分割し、分割した各要素に対してsearchメソッドを実行するようにする
+
     std::string text( expression );
     text.erase( std::remove( text.begin(), text.end(), ' ' ), text.end() );
 
@@ -42,31 +46,29 @@ void Tokenizer::search( const std::string& text )
     std::regex number_pattern( R"(^(-?\d+(\.\d+)?)\D?.*)" );
     std::regex symbol_pattern( R"(^[\+\-\*\/\(\)])" );
     std::smatch match;
+    auto&& matchText = std::string();
 
     if ( std::regex_search( text, match, number_pattern ) )
     {
-        auto&& value = match.str(1);  // match.str(0)は全体マッチ
-        m_tokens.push_back( value );
-
-        if ( text.size() != value.size() )
-        {
-            auto&& buff = text.substr( value.size() );
-            search( buff );
-        }
+        matchText = match.str(1);  // match.str(0)は全体マッチ
+        m_tokens.push_back( matchText );
     }
     else if ( std::regex_search( text, match, symbol_pattern ) )
     {
-        auto&& value = match.str();
-        m_tokens.push_back( value );
-
-        if ( text.size() != value.size() )
-        {
-            auto&& buff = text.substr( value.size() );
-            search( buff );
-        }
+        matchText = match.str();
+        m_tokens.push_back( matchText );
     }
     else
     {
         throw std::exception( "ERROR" );
+    }
+
+    if ( !matchText.empty() )
+    {
+        if ( text != matchText )
+        {
+            auto&& nextText = text.substr( matchText.size() );
+            search( nextText );
+        }
     }
 }
