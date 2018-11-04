@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="rpn">
+      <UniqueIdentifier>{81d2fbdc-eeb2-4514-a167-7673a4bca5c2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="rpn\reversepolishnotation.cpp">
+      <Filter>rpn</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="rpn\reversepolishnotation.h">
+      <Filter>rpn</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
