@@ -13,12 +13,33 @@
     <ClCompile Include="src\tokenizer.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\expressionpaser.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\termpaser.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\factorpaser.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\reversepolishnotation.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\tokenizer.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\expressionpaser.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ipaser.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\termpaser.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\factorpaser.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
