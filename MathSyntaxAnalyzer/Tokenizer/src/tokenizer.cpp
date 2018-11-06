@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <regex>
 #include <exception>
+#include "util.h"
 #include "tokenizer.h"
 
 Tokenizer::Tokenizer( const std::string& expression )
@@ -31,14 +32,18 @@ std::string Tokenizer::current() const
 
 void Tokenizer::parse( const std::string& expression )
 {
-    //@@@ TODO
     // スペースを削除してしまうのではなく、
     // スペースで分割し、分割した各要素に対してsearchメソッドを実行するようにする
 
-    std::string text( expression );
-    text.erase( std::remove( text.begin(), text.end(), ' ' ), text.end() );
+    //std::string text( expression );
+    //text.erase( std::remove( text.begin(), text.end(), ' ' ), text.end() );
 
-    search( text );
+    //search( text );
+
+    for ( auto&& item : izm::split( expression, " " ) )
+    {
+        search( item );
+    }
 }
 
 void Tokenizer::search( const std::string& text )
