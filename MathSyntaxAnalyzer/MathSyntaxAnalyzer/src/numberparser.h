@@ -1,13 +1,12 @@
-#ifndef TERMPASER_H
-#define TERMPASER_H
+#ifndef NUMBERPARSER_H
+#define NUMBERPARSER_H
 
-#include "ipaser.h"
+#include "iparser.h"
 
-class TermPaser : public IPaser
+class NumberParser : public IParser
 {
 public:
     void parse( const std::shared_ptr<Tokenizer>& tokenizer, const std::shared_ptr<ReversePolishNotation>& rpn ) override;
-
 };
 
-#endif // TERMPASER_H
+#endif // NUMBERPARSER_H

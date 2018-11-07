@@ -1,14 +1,14 @@
-#ifndef IPASER_H
-#define IPASER_H
+#ifndef IPARSER_H
+#define IPARSER_H
 
 #include <memory>
 #include "tokenizer.h"
 #include "reversepolishnotation.h"
 
-class IPaser
+class IParser
 {
 public:
     virtual void parse( const std::shared_ptr<Tokenizer>& tokenizer, const std::shared_ptr<ReversePolishNotation>& rpn ) = 0;
 };
 
-#endif // IPASER_H
+#endif // IPARSER_H

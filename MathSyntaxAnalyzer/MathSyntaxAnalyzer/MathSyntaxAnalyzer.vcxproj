@@ -123,18 +123,20 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="src\expressionpaser.cpp" />
-    <ClCompile Include="src\factorpaser.cpp" />
+    <ClCompile Include="src\expressionparser.cpp" />
+    <ClCompile Include="src\factorparser.cpp" />
+    <ClCompile Include="src\numberparser.cpp" />
     <ClCompile Include="src\reversepolishnotation.cpp" />
-    <ClCompile Include="src\termpaser.cpp" />
+    <ClCompile Include="src\termparser.cpp" />
     <ClCompile Include="src\tokenizer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\expressionpaser.h" />
-    <ClInclude Include="src\factorpaser.h" />
-    <ClInclude Include="src\ipaser.h" />
+    <ClInclude Include="src\expressionparser.h" />
+    <ClInclude Include="src\factorparser.h" />
+    <ClInclude Include="src\iparser.h" />
+    <ClInclude Include="src\numberparser.h" />
     <ClInclude Include="src\reversepolishnotation.h" />
-    <ClInclude Include="src\termpaser.h" />
+    <ClInclude Include="src\termparser.h" />
     <ClInclude Include="src\tokenizer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

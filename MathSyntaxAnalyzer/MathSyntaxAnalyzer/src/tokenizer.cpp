@@ -13,22 +13,34 @@ Tokenizer::~Tokenizer()
 {
 }
 
-std::string Tokenizer::next()
+bool Tokenizer::moveNext()
 {
-    auto&& ret = std::string();
-    if ( m_current < m_tokens.size() - 1 )
+    ++m_current;
+    return ( m_current < m_tokens.size() );
+}
+
+void Tokenizer::reset()
+{
+    m_current = 0;
+}
+
+std::string Tokenizer::current() const
+{
+    std::string&& ret = "";
+    if ( ( 0 <= m_current ) && ( m_current < m_tokens.size() ) )
     {
-        ++m_current;
         ret = m_tokens.at( m_current );
     }
     return ret;
 }
 
-std::string Tokenizer::current() const
+// current() + moveNext()
+std::string Tokenizer::get()
 {
-    return m_tokens.at( m_current );
+    std::string&& ret = current();
+    moveNext();
+    return ret;
 }
-
 
 void Tokenizer::parse( const std::string& expression )
 {

@@ -1,12 +1,12 @@
-#ifndef EXPRESSIONPASER_H
-#define EXPRESSIONPASER_H
+#ifndef FACTORPARSER_H
+#define FACTORPARSER_H
 
-#include "ipaser.h"
+#include "iparser.h"
 
-class ExpressionPaser : public IPaser
+class FactorParser : public IParser
 {
 public:
     void parse( const std::shared_ptr<Tokenizer>& tokenizer, const std::shared_ptr<ReversePolishNotation>& rpn ) override;
 };
 
-#endif // EXPRESSIONPASER_H
+#endif // FACTORPARSER_H

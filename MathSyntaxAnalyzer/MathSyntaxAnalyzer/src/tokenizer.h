@@ -10,8 +10,10 @@ public:
     Tokenizer( const std::string& expression );
     virtual ~Tokenizer();
 public:
-    std::string next();
+    bool moveNext();
+    void reset();
     std::string current() const;
+    std::string get();
 private:
     void parse( const std::string& expression );
     void search( const std::string& text );

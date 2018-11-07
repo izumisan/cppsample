@@ -13,13 +13,16 @@
     <ClCompile Include="src\tokenizer.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\expressionpaser.cpp">
+    <ClCompile Include="src\numberparser.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\termpaser.cpp">
+    <ClCompile Include="src\expressionparser.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\factorpaser.cpp">
+    <ClCompile Include="src\factorparser.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\termparser.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -30,16 +33,19 @@
     <ClInclude Include="src\tokenizer.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\expressionpaser.h">
+    <ClInclude Include="src\numberparser.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\ipaser.h">
+    <ClInclude Include="src\iparser.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\termpaser.h">
+    <ClInclude Include="src\expressionparser.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\factorpaser.h">
+    <ClInclude Include="src\factorparser.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\termparser.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
