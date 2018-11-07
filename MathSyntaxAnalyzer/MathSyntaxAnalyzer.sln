@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IZMLIB", "IZMLIB", "{1F27DF
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IZMLIB", "..\IZMLIB\IZMLIB\IZMLIB.vcxproj", "{ABC65CD3-B307-4960-BEAD-0ED344DD1009}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MathSyntaxAnalyzer", "MathSyntaxAnalyzer\MathSyntaxAnalyzer.vcxproj", "{39884CFB-9C92-451B-BED9-151C28314117}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,14 @@ Global
 		{ABC65CD3-B307-4960-BEAD-0ED344DD1009}.Release|x64.ActiveCfg = Release|Win32
 		{ABC65CD3-B307-4960-BEAD-0ED344DD1009}.Release|x86.ActiveCfg = Release|Win32
 		{ABC65CD3-B307-4960-BEAD-0ED344DD1009}.Release|x86.Build.0 = Release|Win32
+		{39884CFB-9C92-451B-BED9-151C28314117}.Debug|x64.ActiveCfg = Debug|x64
+		{39884CFB-9C92-451B-BED9-151C28314117}.Debug|x64.Build.0 = Debug|x64
+		{39884CFB-9C92-451B-BED9-151C28314117}.Debug|x86.ActiveCfg = Debug|Win32
+		{39884CFB-9C92-451B-BED9-151C28314117}.Debug|x86.Build.0 = Debug|Win32
+		{39884CFB-9C92-451B-BED9-151C28314117}.Release|x64.ActiveCfg = Release|x64
+		{39884CFB-9C92-451B-BED9-151C28314117}.Release|x64.Build.0 = Release|x64
+		{39884CFB-9C92-451B-BED9-151C28314117}.Release|x86.ActiveCfg = Release|Win32
+		{39884CFB-9C92-451B-BED9-151C28314117}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
