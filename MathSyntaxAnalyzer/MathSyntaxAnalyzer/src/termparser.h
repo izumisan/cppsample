@@ -9,4 +9,4 @@ public:
     void parse( const std::shared_ptr<Tokenizer>& tokenizer, const std::shared_ptr<ReversePolishNotation>& rpn ) override;
 };
 
-#endif // TERMPASER_H
+#endif // TERMPARSER_H

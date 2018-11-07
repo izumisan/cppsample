@@ -14,6 +14,7 @@ public:
     void reset();
     std::string current() const;
     std::string get();
+    bool isEnd() const;
 private:
     void parse( const std::string& expression );
     void search( const std::string& text );
