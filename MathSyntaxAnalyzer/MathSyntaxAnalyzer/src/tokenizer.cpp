@@ -16,7 +16,7 @@ Tokenizer::~Tokenizer()
 bool Tokenizer::moveNext()
 {
     ++m_current;
-    return ( m_current < m_tokens.size() );
+    return !isEnd();
 }
 
 void Tokenizer::reset()
@@ -40,6 +40,11 @@ std::string Tokenizer::get()
     std::string&& ret = current();
     moveNext();
     return ret;
+}
+
+bool Tokenizer::isEnd() const
+{
+    return !( m_current < m_tokens.size() );
 }
 
 void Tokenizer::parse( const std::string& expression )

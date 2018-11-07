@@ -8,9 +8,10 @@
 
 int main()
 {
-    //std::string&& expr = "1 + 2 + 3 + 4 + 5";
-    //std::string&& expr = "((2 + 3) * (5 + -2)) / -3";
-    std::string&& expr = "1290 * 1.08";
+    //std::string&& expr = "1 + 2 - 3 * 4 / 5";  //=> 0.6
+    //std::string&& expr = "1-2";  // ‚±‚Ì‘Ž®‚É‚Í‘Î‰ž‚Å‚«‚Ä‚¢‚È‚¢...
+    //std::string&& expr = "1 + (2 - 3) * 4 / 5";  //=> 0.2
+    std::string&& expr = "(1 + (2 - 3) * 4) / 5";  //=> -0.6
 
     auto&& tokenizer = std::make_shared<Tokenizer>( expr );
     auto&& rpn = std::make_shared<ReversePolishNotation>();
@@ -18,7 +19,14 @@ int main()
     auto&& parser = ExpressionParser();
     parser.parse( tokenizer, rpn );
 
-    std::cout << rpn->calculate() << std::endl;
+    if ( tokenizer->isEnd() )
+    {
+        std::cout << rpn->calculate() << std::endl;
+    }
+    else
+    {
+        std::cout << "ERROR" << std::endl;
+    }
 
     return 0;
 }
