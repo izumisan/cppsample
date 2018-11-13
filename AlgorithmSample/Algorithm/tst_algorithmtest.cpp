@@ -25,8 +25,17 @@ private Q_SLOTS:
     void find();
     void find_if();
     void find_if_not();
+
     void find_first_of();
+
+    void search();
     void find_end();
+
+    void count();
+    void count_if();
+
+    void equal();
+    void mismatch();
 };
 
 AlgorithmTest::AlgorithmTest()
@@ -180,20 +189,98 @@ void AlgorithmTest::find_first_of()
 }
 //------------------------------------------------------------------------------
 /*!
+  @brief  指定したシーケンスに一致する最初のシーケンスを検索する
+*/
+void AlgorithmTest::search()
+{
+    auto&& v = std::vector<int> { 3, 1, 2, 1, 2, 3 };
+    auto&& target = std::vector<int> { 1, 2 };
+
+    // 最初に見つかった{1, 2}列のイテレータを返す
+    auto&& it = std::search( v.begin(), v.end(), target.begin(), target.end() );
+
+    QVERIFY( it != v.end() );
+    QCOMPARE( it, v.begin() + 1 );
+    QCOMPARE( *it, 1 );
+}
+//------------------------------------------------------------------------------
+/*!
   @brief  指定したシーケンスに一致する最後のシーケンスを検索する
 */
 void AlgorithmTest::find_end()
 {
-    auto&& v = std::vector<int> { 1, 2, 1, 2, 3 };
-    auto&& search = std::vector<int> { 1, 2 };
+    auto&& v = std::vector<int> { 3, 1, 2, 1, 2, 3 };
+    auto&& target = std::vector<int> { 1, 2 };
 
     // 最後に見つかった{1, 2}列のイテレータを返す
-    auto&& it = std::find_end( v.begin(), v.end(), search.begin(), search.end() );
+    auto&& it = std::find_end( v.begin(), v.end(), target.begin(), target.end() );
 
     QVERIFY( it != v.end() );
-    QCOMPARE( it, v.begin() + 2 );
+    QCOMPARE( it, v.begin() + 3 );
     QCOMPARE( *it, 1 );
 }
+//------------------------------------------------------------------------------
+/*!
+  @brief  指定した要素の数をカウントする
+*/
+void AlgorithmTest::count()
+{
+    auto&& v = std::vector<int> { 1, 2, 2, 3, 3, 3 };
+
+    QCOMPARE( std::count( v.begin(), v.end(), 1 ), 1 );
+    QCOMPARE( std::count( v.begin(), v.end(), 2 ), 2 );
+    QCOMPARE( std::count( v.begin(), v.end(), 3 ), 3 );
+    QCOMPARE( std::count( v.begin(), v.end(), 4 ), 0 );
+}
+//------------------------------------------------------------------------------
+/*!
+  @brief  指定した条件を満たす要素の数をカウントする
+*/
+void AlgorithmTest::count_if()
+{
+    auto&& v = std::vector<int> { 1, 2, 2, 3, 3, 3 };
+
+    QCOMPARE( std::count_if( v.begin(), v.end(), [](int x){ return x == 3; } ), 3 );
+    QCOMPARE( std::count_if( v.begin(), v.end(), [](int x){ return x % 2 == 0; } ), 2 );
+    QCOMPARE( std::count_if( v.begin(), v.end(), [](int x){ return x % 2 != 0; } ), 4 );
+}
+//------------------------------------------------------------------------------
+/*!
+  @brief  2つのシーケンスの等値比較する
+*/
+void AlgorithmTest::equal()
+{
+    auto&& v = std::vector<int> { 1, 2, 2, 3, 3, 3 };
+    auto&& t1 = std::vector<int> { 1, 2, 2, 3, 3 };
+    auto&& t2 = std::vector<int> { 1, 2, 2, 3, 3, 3 };
+    auto&& t3 = std::vector<int> { 3, 2, 2, 3, 3, 1 };
+
+    QCOMPARE( std::equal( v.begin(), v.end(), t1.begin(), t1.end() ), false );
+    QCOMPARE( std::equal( v.begin(), v.end(), t2.begin(), t2.end() ), true );
+    QCOMPARE( std::equal( v.begin(), v.end(), t3.begin(), t3.end() ), false );
+}
+//------------------------------------------------------------------------------
+/*!
+  @brief  2つのシーケンスを比較し、異なる要素のイテレータを返す
+*/
+void AlgorithmTest::mismatch()
+{
+    auto&& v = std::vector<int> { 1, 2, 3, 4, 5 };
+    auto&& t1 = std::vector<int> { 1, 2, 3 };
+    auto&& t2 = std::vector<int> { 1, 2, 3, 4, 5 };
+
+    // 2つのシーケンスを比較し、異なる要素のイテレータのペアを返す
+    auto&& it1 = std::mismatch( v.begin(), v.end(), t1.begin(), t1.end() );
+    QCOMPARE( it1.first - v.begin(), 3 );
+    QCOMPARE( it1.second - t1.begin(), 3 );
+
+    // 2つのシーケンスの要素数が等しい場合、第4引数は省略できる
+    // (要素数が異なるシーケンスに対し第4引数を省略すると、プログラムが落ちる)
+    auto&& it2 = std::mismatch( v.begin(), v.end(), t2.begin() );
+    QCOMPARE( it2.first, v.end() );
+    QCOMPARE( it2.second, t2.end() );
+}
+
 
 QTEST_APPLESS_MAIN(AlgorithmTest)
 
