@@ -3,6 +3,7 @@
 
 # ホワイトリスト
 !/AlgorithmSample/
+!/AsyncSample/
 !/CustomStream/
 !/DLLSample/
 !/GoogleTestSample/
