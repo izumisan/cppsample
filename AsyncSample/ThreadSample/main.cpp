@@ -27,20 +27,27 @@ int heavyCalculation( int x )
 
 int main()
 {
+    std::cout << "main thread id=" << std::this_thread::get_id() << std::endl;
     {
-        std::cout << std::this_thread::get_id() << ":start..." << std::endl;
+        std::cout << "main:start..." << std::endl;
 
-        auto&& th = std::thread( [] { doSomething(); } );
+        // doSomething()を別スレッドで実行
+        auto&& th = std::thread( doSomething );
 
+        std::cout << "main:begin sleep 3sec..." << std::endl;
+        std::this_thread::sleep_for( std::chrono::seconds( 3 ) );
+        std::cout << "main:sleep end" << std::endl;
+
+        // 別スレッドの終了を待つ
         th.join();
 
-        std::cout << std::this_thread::get_id() << ":end" << std::endl;
+        std::cout << "main:end" << std::endl;
     }
 
     std::cout << "-----" << std::endl;
 
     {
-        std::cout << std::this_thread::get_id() << ":start..." << std::endl;
+        std::cout << "main:start..." << std::endl;
 
         int input = 2;
         int result = 0;
@@ -50,7 +57,7 @@ int main()
 
         th.join();
 
-        std::cout << std::this_thread::get_id() << ":result=" << result << std::endl;
+        std::cout << "main:result=" << result << std::endl;
     }
 
     return 0;
