@@ -23,3 +23,4 @@
         - 上記いずれか（実装依存）
     - 指定なし
         - `std::launch::async | std::launch::deferred`と同様
+- `std::async()`を`std::launch::async`で実行した`future`オブジェクトの場合のみ、`std::future`のデストラクタで非同期タスクの実行を待機（`join`）する
