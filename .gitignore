@@ -4,6 +4,7 @@
 # ホワイトリスト
 !/AlgorithmSample/
 !/AsyncSample/
+!/C++11Practice/
 !/CustomStream/
 !/DLLSample/
 !/GoogleTestSample/
