@@ -3,6 +3,7 @@
 
 # ホワイトリスト
 !/AlgorithmSample/
+!/AsyncBenchmarkTest/
 !/AsyncSample/
 !/C++11Practice/
 !/CustomStream/
