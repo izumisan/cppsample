@@ -17,6 +17,7 @@ int main()
     } );
 
     // シリアライズ
+    //--------------------------------------------------------------------------
     msgpack::sbuffer buffer;
     msgpack::pack( buffer, foo );
 
@@ -24,6 +25,7 @@ int main()
 
 
     // デシリアライズ
+    //--------------------------------------------------------------------------
     msgpack::object_handle handle = msgpack::unpack( buffer.data(), buffer.size() );
     msgpack::object object = handle.get();
 
@@ -34,7 +36,11 @@ int main()
 
     std::cout << foo.toString() << std::endl;
 
+    // as()でも可能
+    auto&& x = object.as<Foo>();
+    std::cout << x.toString() << std::endl;
 
+    //---
     std::string buff;
     std::getline( std::cin, buff );
 
