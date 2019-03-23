@@ -11,3 +11,5 @@
     - シンプルサンプル
 - MessagePackSample2
     - `msgpack::packer`による異なる型のシリアライズサンプル
+- MessagePackSample3
+    - カスタムクラスのシリアライズサンプル
