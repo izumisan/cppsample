@@ -61,8 +61,5 @@ int main()
     spdlog::info( "double: {:5.2f}", -1.2345678 );
     spdlog::info( "int: {0:d}, hex: {0:x}, oct: {0:o}, bin: {0:b}", 77 );
 
-    //---
-    std::string buff;
-    std::getline( std::cin, buff );
     return 0;
 }
