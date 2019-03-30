@@ -60,9 +60,5 @@ int main()
         std::cout << obj << std::endl;
     }
 
-
-    std::string buff;
-    std::getline( std::cin, buff );
-
     return 0;
 }
