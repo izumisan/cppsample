@@ -40,9 +40,5 @@ int main()
     auto&& x = object.as<Foo>();
     std::cout << x.toString() << std::endl;
 
-    //---
-    std::string buff;
-    std::getline( std::cin, buff );
-
     return 0;
 }

@@ -28,9 +28,5 @@ int main()
     // msgpack::objectは、std::coutでプリント可能
     std::cout << obj << std::endl;
 
-
-    std::string buff;
-    std::getline( std::cin, buff );
-
     return 0;
 }
