@@ -1,6 +1,9 @@
 #include <QtTest>
+#include <iostream>
 #include <string>
 #include "nlohmann/json.hpp"
+#include "msgpack.hpp"
+
 using nlohmann::json;
 
 class JsonForModernCppSample2 : public QObject
@@ -18,7 +21,7 @@ private slots:
     void cleanup();
 
     void messagepack_binary();
-
+    void deserialized_by_messagepack();
 };
 
 JsonForModernCppSample2::JsonForModernCppSample2()
@@ -64,6 +67,53 @@ void JsonForModernCppSample2::messagepack_binary()
     QCOMPARE( jobj2["name"], "foo" );
     QCOMPARE( jobj2["value"], 777.777 );
     QCOMPARE( jobj2["lucky"], true );
+}
+//------------------------------------------------------------------------------
+/**
+ * JSON for Modern C++で生成したMessagePackバイナリを正規のMessePackC++でデシリアライズ
+ */
+void JsonForModernCppSample2::deserialized_by_messagepack()
+{
+    auto&& jobj = R"({"name": "foo", "value": 777.777, "lucky": true})"_json;
+
+    // serialize to MessagePack binary
+    std::vector<uint8_t>&& bytes = json::to_msgpack( jobj );
+
+    // deserialized　by official MessagePack (msgpack-c)
+    msgpack::object_handle handle = msgpack::unpack( reinterpret_cast<char*>( bytes.data() ), bytes.size() );
+    msgpack::object obj = handle.get();
+
+    std::cout << obj << std::endl;
+
+    std::string name = "";
+    double value = 0.0;
+    bool lucky = false;
+
+    for ( msgpack::object_kv* p = obj.via.map.ptr;
+          p < obj.via.map.ptr + obj.via.map.size;
+          ++p )
+    {
+        std::string key = p->key.as<std::string>();
+        if ( key == "name" )
+        {
+            name = p->val.as<std::string>();
+        }
+        else if ( key == "value" )
+        {
+            value = p->val.as<double>();
+        }
+        else if ( key == "lucky" )
+        {
+            lucky = p->val.as<bool>();
+        }
+        else
+        {
+        }
+    }
+
+    QCOMPARE( name.c_str(), "foo" );
+    QCOMPARE( value, 777.777 );
+    QCOMPARE( lucky, true );
 }
 
 QTEST_APPLESS_MAIN(JsonForModernCppSample2)
