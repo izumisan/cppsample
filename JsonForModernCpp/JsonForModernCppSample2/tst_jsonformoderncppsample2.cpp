@@ -22,6 +22,7 @@ private slots:
 
     void messagepack_binary();
     void deserialized_by_messagepack();
+    void deserialize_msgpack_binary();
 };
 
 JsonForModernCppSample2::JsonForModernCppSample2()
@@ -70,7 +71,7 @@ void JsonForModernCppSample2::messagepack_binary()
 }
 //------------------------------------------------------------------------------
 /**
- * JSON for Modern C++で生成したMessagePackバイナリを正規のMessePackC++でデシリアライズ
+ * JSON for Modern C++で生成したバイナリを正規のMessePackC++でデシリアライズ
  */
 void JsonForModernCppSample2::deserialized_by_messagepack()
 {
@@ -114,6 +115,37 @@ void JsonForModernCppSample2::deserialized_by_messagepack()
     QCOMPARE( name.c_str(), "foo" );
     QCOMPARE( value, 777.777 );
     QCOMPARE( lucky, true );
+}
+//------------------------------------------------------------------------------
+/**
+ * 正規のMessagePackC++で生成したバイナリをJSON for Modern C++でデシリアライズ
+ */
+void JsonForModernCppSample2::deserialize_msgpack_binary()
+{
+    // serialized by MessagePack C++
+    msgpack::sbuffer buffer;
+    msgpack::packer<msgpack::sbuffer> packer( &buffer );
+    packer.pack_map( 3 );
+    packer.pack( "name" );
+    packer.pack( "foo" );
+    packer.pack( "value" );
+    packer.pack( 777 );
+    packer.pack( "lucky" );
+    packer.pack( true );
+
+    // msgpack::sbuffer -> std::vectory<uint8_t>
+    std::vector<uint8_t> bytes;
+    for ( int i = 0; i < buffer.size(); ++i )
+    {
+        bytes.push_back( *( buffer.data() + i ) );
+    }
+
+    // deserialized by Json for Modern C++
+    json&& obj = json::from_msgpack( bytes );
+
+    QCOMPARE( obj["name"], "foo" );
+    QCOMPARE( obj["value"], 777 );
+    QCOMPARE( obj["lucky"], true );
 }
 
 QTEST_APPLESS_MAIN(JsonForModernCppSample2)
