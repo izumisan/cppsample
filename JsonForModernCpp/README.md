@@ -9,4 +9,4 @@
 - JsonForModernCppSample
     - はじめてのJSON for Modern C++
 - JsonForModernCppSample2
-    - MessagePackバイナリへの変換サンプル
+    - MessagePackとの相互変換サンプル
