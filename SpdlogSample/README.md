@@ -20,3 +20,7 @@
 - error
 - critical
 - off
+
+# Note
+
+- VisualStudioの場合、プログラム終了前に`spdlog::drop_all()`を呼び出す必要があるらしい.
