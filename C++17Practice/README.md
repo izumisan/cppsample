@@ -17,3 +17,5 @@ C++17の新機能を使ってみた.
         - `hypot`
         - `gcd`
         - `lcm`
+- AnyClass
+    - anyクラス
