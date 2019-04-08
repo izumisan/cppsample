@@ -19,3 +19,5 @@ C++17の新機能を使ってみた.
         - `lcm`
 - AnyClass
     - anyクラス
+- Filesystem
+    - filesystemクラス
