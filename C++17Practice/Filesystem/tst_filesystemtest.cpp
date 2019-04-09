@@ -1,5 +1,6 @@
 #include <QtTest>
 #include <iostream>
+#include <vector>
 #include <filesystem>
 
 class FilesystemTest : public QObject
@@ -12,7 +13,7 @@ public:
 
 private slots:
     void path_test();
-
+    void directory_entry_test();
 };
 /**
  * std::filesystem::pathクラス
@@ -52,6 +53,36 @@ void FilesystemTest::path_test()
     std::filesystem::path profile = parent;  // 複製
     profile.append( "C++17Practice.pro" );
     QCOMPARE( std::filesystem::exists( profile ), true );
+}
+/**
+ * std::filesystem::directory_entryクラス
+ */
+void FilesystemTest::directory_entry_test()
+{
+    // カレントディレクトリ
+    std::filesystem::directory_entry dir( std::filesystem::current_path() );
+    qDebug() << dir.path().string().c_str();
+
+    QCOMPARE( dir.exists(), true );
+
+    // ディレクトリ？
+    QCOMPARE( dir.is_directory(), true );
+
+    // ファイル？
+    QCOMPARE( dir.is_regular_file(), false );
+
+    // ディレクトリ内を走査するイテレータ
+    std::filesystem::directory_iterator dirIter( dir.path() );
+    auto&& filelist = std::vector<std::string>();
+
+    // カレントディレクトリ内のファイルを列挙
+    for ( const std::filesystem::directory_entry& item : dirIter )
+    {
+        filelist.emplace_back( item.path().filename().string() );
+    }
+    QCOMPARE( std::any_of( filelist.cbegin(), filelist.cend(), [](auto&& x){ return x == "Makefile"; } ), true );
+    QCOMPARE( std::any_of( filelist.cbegin(), filelist.cend(), [](auto&& x){ return x == "Makefile.Debug"; } ), true );
+    QCOMPARE( std::any_of( filelist.cbegin(), filelist.cend(), [](auto&& x){ return x == "Makefile.Release"; } ), true );
 }
 
 QTEST_APPLESS_MAIN(FilesystemTest)
