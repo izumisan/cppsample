@@ -20,4 +20,7 @@ C++17の新機能を使ってみた.
 - AnyClass
     - anyクラス
 - Filesystem
-    - filesystemクラス
+    - `<filesystem>`ヘッダ
+        - `path`クラス
+        - `directory_entry`クラス
+        - `directory_iterator`クラス
