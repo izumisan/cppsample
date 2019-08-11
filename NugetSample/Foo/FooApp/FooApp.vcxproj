@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\foo.native.1.0.0\build\native\foo.native.props" Condition="Exists('..\packages\foo.native.1.0.0\build\native\foo.native.props')" />
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -76,6 +77,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -125,13 +127,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-    <Import Project="..\packages\foo.native.1.0.0\build\native\foo.native.targets" Condition="Exists('..\packages\foo.native.1.0.0\build\native\foo.native.targets')" />
-  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>このプロジェクトは、このコンピューター上にない NuGet パッケージを参照しています。それらのパッケージをダウンロードするには、[NuGet パッケージの復元] を使用します。詳細については、http://go.microsoft.com/fwlink/?LinkID=322105 を参照してください。見つからないファイルは {0} です。</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\foo.native.1.0.0\build\native\foo.native.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\foo.native.1.0.0\build\native\foo.native.targets'))" />
+    <Error Condition="!Exists('..\packages\foo.native.1.0.0\build\native\foo.native.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\foo.native.1.0.0\build\native\foo.native.props'))" />
   </Target>
 </Project>
