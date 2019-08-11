@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <ImportGroup Label="PropertySheets"/>
+    <PropertyGroup>
+    </PropertyGroup>
+    <ItemDefinitionGroup>
+        <ClCompile>
+            <!-- 追加のインクルードディレクトリ -->
+            <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)../../build/native/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+        </ClCompile>
+        <Link>
+            <!-- 追加のライブラリディレクトリ -->
+            <AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)../../build/native/lib/$(Configuration)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+            <!-- 追加の依存ファイル -->
+            <AdditionalDependencies>Foo.lib;%(AdditionalDependencies)</AdditionalDependencies>
+        </Link>
+    </ItemDefinitionGroup>
+</Project>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>foo.native</id>
+    <version>1.0.0</version>
+    <authors>izumisan</authors>
+    <owners>izumisan</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <summary>Here is summary.</summary>
+    <description>Here is description.</description>
+    <releaseNotes>v1.0.0 初版</releaseNotes>
+    <copyright>Copyright(c) 2019 izumisan</copyright>
+    <tags>c++ native nugettest</tags>
+    <language>ja-JP</language>
+  </metadata>
+</package>
