@@ -15,6 +15,7 @@
 !/MathSyntaxAnalyzer/
 !/MemoryLeakCheck/
 !/MessagePackSample/
+!/MSTestForCppSample/
 !/NugetSample/
 !/NUnitCpp/
 !/ProtobufSample/
