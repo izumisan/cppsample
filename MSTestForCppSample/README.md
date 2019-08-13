@@ -8,6 +8,9 @@ Visual Studio付属のMicrosoft製C++テストフレームワークの`Microsoft
     - プロジェクトの追加から`ネイティブ単体テスト プロジェクト`を選択して作成したテストプロジェクト
 - BarTest
     - `空のプロジェクト`から作成したテストプロジェクト
+- VSTestConsoleRunSample
+    - VisualStudioではなくQtCreatorを利用
+    - `vstest.console.exe`を用いてテスト実行したバージョン
 
 # 実行順序
 
@@ -23,6 +26,21 @@ Visual Studio付属のMicrosoft製C++テストフレームワークの`Microsoft
 - ライブラリパスに以下を設定する
     - `$(VCInstallDir)Auxiliary\VS\UnitTest\lib`
     - libファイル自体は設定しなくてもよい
+
+# コンソールランナー
+
+- `vstest.console.exe`を使う
+    ```
+    > vstest.console.exe FooTest.dll BarTest.dll
+    ```
+- 場所: VS2017 communityの場合
+    - `C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\TestWindow`
+
+# Qt Creatorによるテスト実行
+
+実行時の設定例
+
+![](2019-08-13-15-11-02.png)
 
 # 参考
 
