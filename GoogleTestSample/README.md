@@ -5,6 +5,8 @@
     - nugetのstaticライブラリを利用
 - GoogleTestSample2
     - GitHubのソースコードを利用
+- ParametricTest
+    - パラメトリックテストのサンプル
 
 # 覚書
 
