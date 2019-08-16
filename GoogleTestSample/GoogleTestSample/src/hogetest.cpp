@@ -1,4 +1,5 @@
 #include <iostream>
+#include <functional>
 #include "gtest/gtest.h"
 
 TEST( HogeTest, test1 )
@@ -18,7 +19,7 @@ TEST( HogeTest, test2 )
 {
     std::cout << test_info_->test_case_name() << "::" << test_info_->name() << std::endl;
 
-    EXPECT_FLOAT_EQ( 0.123456, 0.123456 );
+    EXPECT_FLOAT_EQ( 0.123456f, 0.123456f );
 
     EXPECT_DOUBLE_EQ( 0.123456, 0.123456 );
 
@@ -36,7 +37,21 @@ TEST( HogeTest, test3 )
     EXPECT_STRCASENE( "abcde", "AAAAA" );  // val1 != val2 (ignore case)
 }
 
-TEST( HogeTest, error_message )
+TEST( HogeTest, exceptionTest )
+{
+    auto&& throwException = [] { throw std::runtime_error( "error" ); };
+
+    ASSERT_THROW( throwException(), std::runtime_error );
+    ASSERT_THROW( throwException(), std::exception );  // ‚±‚ê‚àSUCCESS‚Æ‚È‚é
+
+    ASSERT_ANY_THROW( throwException() );
+
+    auto&& dontThrowException = [] {};
+
+    ASSERT_NO_THROW( dontThrowException() );
+}
+
+TEST( HogeTest, errorMessage )
 {
     std::cout << test_info_->test_case_name() << "::" << test_info_->name() << std::endl;
 
