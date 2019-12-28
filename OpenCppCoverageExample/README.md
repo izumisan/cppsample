@@ -8,9 +8,17 @@ Windows用のC++カバレッジ計測ツール
 - 要インストール
 - HTMLのレポート出力可能
 - [VisualStudio用拡張アドイン](https://marketplace.visualstudio.com/items?itemName=OpenCppCoverage.OpenCppCoveragePlugin)有り
-    - OpenCppCoverage本体が統合されているので、本体そのものをインストールしなくても使用可能
+    - OpenCppCoverage本体が統合されているので、本体そのものをインストールしていなくても使用可能
     - VisualStudioウィンドウでカバレッジ確認可能
 - 計測しているのは命令網羅（statement coverage）（C0）っぽい
+
+# overview
+
+- ConsoleApp
+- ConsoleApp2
+    - 動作確認用プログラム
+- runconverage.ps1
+    - コンソール版を利用し、複数プログラムによるカバレッジレポートをマージしたサンプルスクリプト
 
 # インストールせずにコンソール版を使用する
 
