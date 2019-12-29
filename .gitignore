@@ -18,12 +18,14 @@
 !/MSTestForCppSample/
 !/NugetSample/
 !/NUnitCpp/
+!/OpenCppCoverageExample/
 !/ProtobufSample/
 !/SpdlogSample/
 !/UserDefinedLiterals/
 
 # 共通設定
 .qmake.stash
+.opencppcov
 
 # VisualStudio.gitignore
 #-------------------------------------------------------------------------------
