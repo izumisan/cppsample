@@ -1,5 +1,13 @@
 # CMake
 
+# overview
+
+- HelloWorld
+    - 単一ファイルの場合
+- HelloWorld2
+    - ソースファイルが複数の場合
+
+
 # 基本（コマンドラインツール）
 
 1. buildディレクトリを作成する
@@ -43,5 +51,5 @@
 - ALL_BUILD
     - 全てのプロジェクトをビルドする
 - ZERO_CHECK
-    - Generate後にCMakeファイルを編集した場合、その編集をプロジェクトファイルに反映するためのぷrジェクト
+    - Generate後にCMakeファイルを編集した場合、その編集をプロジェクトファイルに反映するためのプロジェクト
     - `CMakeLists.txt`を編集した際は、`ZERO_CHECK`をビルドすればプロジェクトに反映（更新）される
