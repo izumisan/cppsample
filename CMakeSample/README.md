@@ -15,7 +15,46 @@
     - `target_include_directories`により、ライブラリ利用側でインクルードディレクトリの指定を不要としたサンプル
 - FooLibrary3
     - CMakeListsで管理されているライブラリを`add_subdirectory`で指定したサンプル
-    
+
+
+
+**FooLibrary**
+```
+Foo/
+    CMakeLists.txt
+FooApp/
+    CMakeLists.txt
+        - link_directories()
+        - include_directories()
+        - target_link_libraries() 
+```
+
+**FooLibrary2**
+```
+CMakeLists.txt
+    Foo/
+        CMakeLists.txt
+            - target_include_directories()
+    FooApp/
+        CMakeLists.txt
+            - target_link_libraries()
+
+* FooLibraryサンプルと異なり、FooApp側でリンクディレクトリやインクルードディレクトリを指定する必要はない
+```
+
+**FooLibrary3**
+```
+Foo/
+    CMakeLists.txt
+        - target_include_directories()
+FooApp/
+    CMakeLists.txt
+        - add_subdirectory()        [1]
+        - target_link_libraries()
+
+*1 FooLibrary2と異なり、FooとFooAppを含む共通のCMakeListsがない場合、add_subdirectory()で追加プロジェクトのビルドディレクトリを指定する必要がある
+```
+
 
 # 基本（コマンドラインツール）
 
