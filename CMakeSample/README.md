@@ -13,7 +13,9 @@
 - FooLibrary2
     - ライブラリとAppをソリューションとして同一プロジェクトにしたサンプル
     - `target_include_directories`により、ライブラリ利用側でインクルードディレクトリの指定を不要としたサンプル
-
+- FooLibrary3
+    - CMakeListsで管理されているライブラリを`add_subdirectory`で指定したサンプル
+    
 
 # 基本（コマンドラインツール）
 
