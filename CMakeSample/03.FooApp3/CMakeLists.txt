@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.12)
 
-project( HellowWorld3 CXX )
+project( FooApp3 CXX )
 
 # add_subdirectory()で
 # 指定したサブディレクトリのCMakeLists.txtを読み込む
