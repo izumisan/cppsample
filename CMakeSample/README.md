@@ -15,7 +15,10 @@
     - `target_include_directories`により、ライブラリ利用側でインクルードディレクトリの指定を不要としたサンプル
 - FooLibrary3
     - CMakeListsで管理されているライブラリを`add_subdirectory`で指定したサンプル
-
+- BuildOptions
+    - `target_compile_options`でコンパイルオプションを設定する
+    - `target_compile_features`でC++言語標準を設定する
+    - `target_compile_definitions`でマクロを定義する
 
 
 **FooLibrary**
