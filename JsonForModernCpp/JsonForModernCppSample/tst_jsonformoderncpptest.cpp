@@ -1,6 +1,7 @@
 #include <QString>
 #include <QtTest>
 #include <vector>
+#include <fstream>
 
 #include "nlohmann/json.hpp"
 
@@ -22,6 +23,7 @@ private Q_SLOTS:
 
     void deserialize();
     void deserialize2();
+    void deserialize_file();
 
     void serialize();
     void serialize2();
@@ -85,6 +87,23 @@ void JsonForModernCppTest::deserialize2()
     QCOMPARE( j["happy"], true );
 
     QCOMPARE( j["hoge"], nullptr );
+}
+//-----------------------------------------------------------------------------
+/**
+ * @brief nlohmann::json::parse()にifstreamを渡すことで、ファイル読み込み＆デシリアライズできる.
+ */
+void JsonForModernCppTest::deserialize_file()
+{
+    auto&& jsonfile = QFINDTESTDATA("foo.json");
+    QVERIFY( QFile::exists( jsonfile ) == true );
+
+    std::ifstream ifs( jsonfile.toStdString(), std::ios::in );
+    auto&& json = json::parse( ifs );  // ファイル読み込み＆デシリアライズ
+
+    QCOMPARE( json.at( "foo" ).get<std::string>(), "Foo" );
+    QCOMPARE( json.at( "pi" ).get<double>(), 3.14 );
+    QCOMPARE( json.at( "happy" ).get<bool>(), true );
+    QCOMPARE( json.at( "lists" ).get<std::vector<double>>(), std::vector<double>( { 1.1, 2.2, 3.3 } ) );
 }
 //------------------------------------------------------------------------------
 /*!

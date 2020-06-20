@@ -24,3 +24,5 @@ include(../msvc.pri)
 
 SOURCES += \
         tst_jsonformoderncpptest.cpp
+
+OTHER_FILES += foo.json
