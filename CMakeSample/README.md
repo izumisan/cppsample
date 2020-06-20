@@ -1,5 +1,8 @@
 # CMake
 
+- [公式ページ](https://cmake.org/)
+- [公式ドキュメント](https://cmake.org/cmake/help/latest/)
+
 # overview
 
 - FooApp
