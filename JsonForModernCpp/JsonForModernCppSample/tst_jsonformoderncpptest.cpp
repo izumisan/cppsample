@@ -2,6 +2,7 @@
 #include <QtTest>
 #include <vector>
 #include <fstream>
+#include <sstream>
 
 #include "nlohmann/json.hpp"
 
@@ -24,7 +25,8 @@ private Q_SLOTS:
     void deserialize();
     void deserialize2();
     void deserialize_file();
-
+    void type_check();
+    void STL_like_access();
     void serialize();
     void serialize2();
 };
@@ -104,6 +106,79 @@ void JsonForModernCppTest::deserialize_file()
     QCOMPARE( json.at( "pi" ).get<double>(), 3.14 );
     QCOMPARE( json.at( "happy" ).get<bool>(), true );
     QCOMPARE( json.at( "lists" ).get<std::vector<double>>(), std::vector<double>( { 1.1, 2.2, 3.3 } ) );
+}
+//------------------------------------------------------------------------------
+/**
+ * @brief is_xxx()で型判定が可能.
+ */
+void JsonForModernCppTest::type_check()
+{
+    auto&& json = R"(
+    {
+        "foo": "Foo",
+        "pi": 3.14,
+        "happy": true,
+        "lists": [1.1, 2.2, 3.3]
+    })"_json;
+
+    QCOMPARE( json.is_object(), true );
+    QCOMPARE( json.at( "foo" ).is_string(), true );
+    QCOMPARE( json.at( "pi" ).is_number(), true );
+    QCOMPARE( json.at( "happy" ).is_boolean(), true );
+    QCOMPARE( json.at( "lists" ).is_array(), true );
+}
+//------------------------------------------------------------------------------
+/**
+ * @brief STLコンテナのように要素にアクセスできる
+ */
+void JsonForModernCppTest::STL_like_access()
+{
+    auto&& json = R"(
+    {
+        "foo": "Foo",
+        "pi": 3.14,
+        "happy": true,
+        "lists": [1.1, 2.2, 3.3]
+    })"_json;
+
+    // size()により、要素数を取得できる
+    QCOMPARE( json.size(), 4 );
+
+    // contains()により、キーの有無を確認できる
+    QCOMPARE( json.contains( "foo" ), true );
+    QCOMPARE( json.contains( "bar" ), false );
+
+    // find()により、要素を取得できる
+    QVERIFY( json.find( "foo" ) != json.end() );
+    QVERIFY( json.find( "bar" ) == json.end() );
+
+    // イテレータによるアクセス
+    qDebug() << "----- iterator";
+    for ( json::const_iterator it = json.cbegin(); it != json.cend(); ++it )
+    {
+        // 挿入演算子(<<)がオーバーライドされているので、std::coutやstd::stringstreamに出力可能.
+        std::stringstream ss;
+        ss << it.key() << " " << it.value();
+        qDebug() << ss.str().c_str();
+    }
+
+    // items()により、range-for文で要素を取得できるようになる
+    qDebug() << "----- range for";
+    for ( auto&& element : json.items() )
+    {
+        std::stringstream ss;
+        ss << element.key() << " " << element.value();
+        qDebug() << ss.str().c_str();
+    }
+
+    // 構造化バインディング
+    qDebug() << "----- structured bindings";
+    for ( auto& [key, value] : json.items() )
+    {
+        std::stringstream ss;
+        ss << key << " " << value;
+        qDebug() << ss.str().c_str();
+    }
 }
 //------------------------------------------------------------------------------
 /*!
