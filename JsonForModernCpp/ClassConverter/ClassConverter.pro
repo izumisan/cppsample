@@ -10,4 +10,4 @@ include(../msvc.pri)
 include(../jsonformoderncpp/jsonformoderncpp.pri)
 
 HEADERS += *.h
-SOURCES +=  tst_jsonformoderncppsample3.cpp
+SOURCES +=  tst_classconverter.cpp

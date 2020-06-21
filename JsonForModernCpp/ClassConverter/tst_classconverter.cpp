@@ -2,13 +2,13 @@
 #include "foo.h"
 #include "fooconverter.h"
 
-class JsonForModernCppSample3 : public QObject
+class ClassConverter : public QObject
 {
     Q_OBJECT
 
 public:
-    JsonForModernCppSample3();
-    ~JsonForModernCppSample3();
+    ClassConverter();
+    ~ClassConverter();
 
 private slots:
     void initTestCase();
@@ -18,26 +18,26 @@ private slots:
     void deserialize_user_defined_class();
 };
 
-JsonForModernCppSample3::JsonForModernCppSample3()
+ClassConverter::ClassConverter()
 {
 }
 
-JsonForModernCppSample3::~JsonForModernCppSample3()
+ClassConverter::~ClassConverter()
 {
 }
 
-void JsonForModernCppSample3::initTestCase()
+void ClassConverter::initTestCase()
 {
 }
 
-void JsonForModernCppSample3::cleanupTestCase()
+void ClassConverter::cleanupTestCase()
 {
 }
 
 /**
  * @brief 自作クラスのシリアライズ
  */
-void JsonForModernCppSample3::serialize_user_defined_class()
+void ClassConverter::serialize_user_defined_class()
 {
     auto&& foo = sample::Foo();
     foo.setName( "Foo's name" );
@@ -58,7 +58,7 @@ void JsonForModernCppSample3::serialize_user_defined_class()
 /**
  * @brief 自作クラスのデシリアライズ
  */
-void JsonForModernCppSample3::deserialize_user_defined_class()
+void ClassConverter::deserialize_user_defined_class()
 {
     auto&& json = R"({
         "name": "foo",
@@ -77,6 +77,6 @@ void JsonForModernCppSample3::deserialize_user_defined_class()
     QCOMPARE( foo.values(), std::vector<int>( { 1, 2, 3 } ) );
 }
 
-QTEST_APPLESS_MAIN(JsonForModernCppSample3)
+QTEST_APPLESS_MAIN(ClassConverter)
 
-#include "tst_jsonformoderncppsample3.moc"
+#include "tst_classconverter.moc"
