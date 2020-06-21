@@ -1,7 +1,6 @@
 # JSON for Modern C++
 # https://github.com/nlohmann/json
 
-JSON_TOP = $$PWD
-JSON_INCLUDE = $${JSON_TOP}/include-3.1.2
+JSON_INCLUDE = $${PWD}/json-3.8.0/include/
 
 INCLUDEPATH += $${JSON_INCLUDE}
