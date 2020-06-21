@@ -10,8 +10,10 @@
     - はじめてのJSON for Modern C++
 - JsonForModernCppSample2
     - MessagePackとの相互変換サンプル
-- JsonForModernCppSample3
+- ClassConverter
     - 自作クラスの(de)serializeサンプル
+- EnumConverter
+    - 列挙型の(de)serializeサンプル
 
 # 参考
 
