@@ -1,0 +1,7 @@
+# NatsSample/.gitignore
+
+/nats-server-*/
+/nats.c-*/
+
+nats-server-*.zip
+nats.c-*.zip

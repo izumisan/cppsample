@@ -17,6 +17,7 @@
 !/MemoryLeakCheck/
 !/MessagePackSample/
 !/MSTestForCppSample/
+!/NatsSample/
 !/NugetSample/
 !/NUnitCpp/
 !/OpenCppCoverageExample/
