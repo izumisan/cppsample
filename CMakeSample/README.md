@@ -1,5 +1,8 @@
 # CMake
 
+- [公式ページ](https://cmake.org/)
+- [公式ドキュメント](https://cmake.org/cmake/help/latest/)
+
 # overview
 
 - FooApp
@@ -105,3 +108,14 @@ FooApp/
 - ZERO_CHECK
     - Generate後にCMakeファイルを編集した場合、その編集をプロジェクトファイルに反映するためのプロジェクト
     - `CMakeLists.txt`を編集した際は、`ZERO_CHECK`をビルドすればプロジェクトに反映（更新）される
+
+# 参考
+
+- [CMake Advent Calendar 2014](https://qiita.com/advent-calendar/2014/cmake)
+    - [CMake: 変数](https://qiita.com/mrk_21/items/68470da5d1931915cde2)
+    - [CMake: リスト](https://qiita.com/mrk_21/items/082bae48a5ef2ac1564c)
+    - [CMake: 条件分岐](https://qiita.com/mrk_21/items/49d8802dc63a2791bcc3)
+    - [CMake: ループ](https://qiita.com/mrk_21/items/f45736dcf418bd937efe)
+    - [CMake: キャッシュ変数と環境変数](https://qiita.com/mrk_21/items/186439952a6665184444)
+    - [CMake: 便利なコマンド・変数](https://qiita.com/mrk_21/items/5e7ca775b463a4141a58)
+- [CMakeを使ってみた（2）もう少しまともなプロジェクト](https://www.wagavulin.jp/entry/2011/11/27/222642)
