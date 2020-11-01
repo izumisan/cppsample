@@ -1,43 +1,43 @@
 #include <iostream>
 #include <string>
 
-#include <nats.h>
+#include <nats/nats.h>
 
 int main()
 {
     std::cout << "Publisher start..." << std::endl;
 
-    natsConnection* connection = nullptr;
-
     // NATSサーバーへの接続
     //
     // - natsConnection_ConnectTo(): urlを指定して接続する
     // - natsConnection_Connect(): natsOptionsオブジェクトを指定して接続する(see. Subscriber)
+    natsConnection* connection = nullptr;
     auto&& status = natsConnection_ConnectTo( &connection, "nats://localhost:4222" );
 
     if ( status == NATS_OK )
     {
         std::cout << "connected." << std::endl;
 
+        std::string routingKey {};
+        std::cout << "routingKey: ";
+        std::getline( std::cin, routingKey );
+
         while ( true )
         {
-            std::string input;
-            std::cout << "> ";
-            std::cin >> input;
-
-            if ( input != "quit" )
-            {
-                // publish
-                //
-                // - natsConnection_Publish(): バイト列をpubする
-                // - natsConnection_PublishString(): 文字列データをpubする
-                // - natsConnection_PublishMsg(): natsMsgオブジェクトをpubする
-                natsConnection_PublishString( connection, "foo.bar", input.c_str() );
-            }
-            else
+            std::string message {};
+            std::cout << "message: ";
+            std::getline( std::cin, message );
+            if ( message == "quit" )
             {
                 break;
             }
+
+            // publish
+            //
+            // - natsConnection_Publish(): バイト列をpubする
+            // - natsConnection_PublishString(): 文字列データをpubする
+            // - natsConnection_PublishMsg(): natsMsgオブジェクトをpubする
+            natsConnection_PublishString( connection, routingKey.c_str(), message.c_str() );
         }
 
         // 切断
