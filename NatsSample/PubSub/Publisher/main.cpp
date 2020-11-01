@@ -64,12 +64,20 @@ int main()
 bool parse( const std::string& input, std::string& routingKey, std::string& body )
 {
     bool ret = false;
-    const std::regex regex( "(.+?) (.*)" );
-    std::smatch match {};
-    if ( std::regex_search( input, match, regex ) && ( match.size() == 3 ) )
+    if ( input.empty() != true )
     {
-        routingKey = match.str( 1 );
-        body = match.str( 2 );
+        const std::regex regex( "(.+?) (.*)" );
+        std::smatch match {};
+        if ( std::regex_search( input, match, regex ) && ( match.size() == 3 ) )
+        {
+            routingKey = match.str( 1 );
+            body = match.str( 2 );
+        }
+        else
+        {
+            routingKey = input;
+            body = "";
+        }
         ret = true;
     }
     return ret;

@@ -20,7 +20,8 @@ int main()
 
         natsSubscription* subscription = nullptr;
 
-        // 1つのnatsSubscriptionに対し、複数回のSubscribeが可能
+        // 1つのSubscriptionに対し、複数回のSubscribeを行っても有効に作用しているが、
+        // ポインタが変化しているので、メモリリークしてしまっている可能性が高い(未確認)
 
         std::string bindingKey {};
         std::cout << "bindingKey1: ";
@@ -32,6 +33,7 @@ int main()
         std::getline( std::cin, bindingKey2 );
         natsConnection_Subscribe( &subscription, connection, bindingKey2.c_str(), onRecieved2, nullptr );
 
+        natsSubscription_Unsubscribe( subscription );
 
         std::cout << "Press any key to quit." << std::endl;
         std::string input;
