@@ -1,18 +1,15 @@
 # nats.c.pri
 
-NATS_TOP = $${PWD}/nats.c-2.2.0/
+# https://github.com/nats-io/nats.c
 
-NATS_INCLUDE_DIR = $${NATS_TOP}/src/
-NATS_DEBUG_LIB_DIR = $${NATS_TOP}/build/src/Debug/
-NATS_RELEASE_LIB_DIR = $${NATS_TOP}/build/src/Release/
+NATS_LIB_DIR = $${PWD}/nats.c-2.2.0/install/
 
-INCLUDEPATH += $${NATS_INCLUDE_DIR}
-HEADERS += $${NATS_INCLUDE_DIR}/*.h
+INCLUDEPATH += $${NATS_LIB_DIR}/include
 
 CONFIG(debug, debug|release){
-    LIBS += -L$${NATS_DEBUG_LIB_DIR}
+    LIBS += -L$${NATS_LIB_DIR}/lib/
     LIBS += -lnats_staticd
 } else {
-    LIBS += -L$${NATS_RELEASE_LIB_DIR}
+    LIBS += -L$${NATS_LIB_DIR}/lib/
     LIBS += -lnats_static
 }

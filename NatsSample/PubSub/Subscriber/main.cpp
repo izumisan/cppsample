@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-#include <nats.h>
+#include <nats/nats.h>
 
 // メッセージハンドラ
 static void onRecieved( natsConnection* connection, natsSubscription* subscription, natsMsg* msg, void* closure )
@@ -41,6 +41,10 @@ int main()
     {
         std::cout << "connected." << std::endl;
 
+        std::string bindingKey {};
+        std::cout << "bindingKey: ";
+        std::getline( std::cin, bindingKey );
+
         natsSubscription* subscription = nullptr;
         volatile bool done = false;
 
@@ -54,7 +58,7 @@ int main()
         // 同期型
         // - natsConnection_SubscribeSync()
         // - 受信メッセージをnatsSubscription_NextMsg()で取り出す
-        natsConnection_Subscribe( &subscription, connection, "foo.bar", onRecieved, (void*)(&done) );
+        natsConnection_Subscribe( &subscription, connection, bindingKey.c_str(), onRecieved, (void*)(&done) );
 
 
         std::cout << "Press any key to quit." << std::endl;
