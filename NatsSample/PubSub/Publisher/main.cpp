@@ -1,7 +1,10 @@
 #include <iostream>
+#include <regex>
 #include <string>
 
 #include <nats/nats.h>
+
+static bool parse( const std::string& input, std::string& routingKey, std::string& body );
 
 int main()
 {
@@ -18,26 +21,28 @@ int main()
     {
         std::cout << "connected." << std::endl;
 
-        std::string routingKey {};
-        std::cout << "routingKey: ";
-        std::getline( std::cin, routingKey );
-
         while ( true )
         {
-            std::string message {};
-            std::cout << "message: ";
-            std::getline( std::cin, message );
-            if ( message == "quit" )
+            std::string input {};
+            std::cout << "{routingKey} {body}: ";
+            std::getline( std::cin, input );
+
+            if ( input == "quit" )
             {
                 break;
             }
 
-            // publish
-            //
-            // - natsConnection_Publish(): バイト列をpubする
-            // - natsConnection_PublishString(): 文字列データをpubする
-            // - natsConnection_PublishMsg(): natsMsgオブジェクトをpubする
-            natsConnection_PublishString( connection, routingKey.c_str(), message.c_str() );
+            std::string routingKey {};
+            std::string body {};
+            if ( parse( input, routingKey, body ) )
+            {
+                // publish
+                //
+                // - natsConnection_Publish(): バイト列をpubする
+                // - natsConnection_PublishString(): 文字列データをpubする
+                // - natsConnection_PublishMsg(): natsMsgオブジェクトをpubする
+                natsConnection_PublishString( connection, routingKey.c_str(), body.c_str() );
+            }
         }
 
         // 切断
@@ -54,4 +59,18 @@ int main()
     natsConnection_Destroy( connection );
 
     return 0;
+}
+
+bool parse( const std::string& input, std::string& routingKey, std::string& body )
+{
+    bool ret = false;
+    const std::regex regex( "(.+?) (.*)" );
+    std::smatch match {};
+    if ( std::regex_search( input, match, regex ) && ( match.size() == 3 ) )
+    {
+        routingKey = match.str( 1 );
+        body = match.str( 2 );
+        ret = true;
+    }
+    return ret;
 }
