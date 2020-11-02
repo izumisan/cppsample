@@ -8,4 +8,5 @@ $nats_server_program = "./nats-server-v2.1.8-windows-386/nats-server.exe"
 # --log <file> でログファイルに出力する
 # --debug
 # --trace
-Start-Process -FilePath $nats_server_program -ArgumentList "--addr 127.0.0.1 --port 4222" -NoNewWindow -Wait
+#Start-Process -FilePath $nats_server_program -ArgumentList "--addr 127.0.0.1 --port 4222" -NoNewWindow -Wait
+Start-Process -FilePath $nats_server_program -ArgumentList "--addr 127.0.0.1 --port 4222 --debug --trace" -NoNewWindow -Wait
