@@ -4,7 +4,7 @@
 
 int main()
 {
-    // ƒfƒtƒHƒ‹ƒg‚ÌƒƒOƒŒƒxƒ‹‚Í"info"‚È‚Ì‚ÅA"trace"‚Æ"debug"‚Ío—Í‚³‚ê‚È‚¢
+    // ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ­ã‚°ãƒ¬ãƒ™ãƒ«ã¯"info"ãªã®ã§ã€"trace"ã¨"debug"ã¯å‡ºåŠ›ã•ã‚Œãªã„
     spdlog::trace( "trace" );
     spdlog::debug( "debug" );
     spdlog::info( "info" );
@@ -53,11 +53,11 @@ int main()
     auto&& value = 777;
     auto&& lucky = true;
 
-    // C#‚Ìstring.Format‚Ì‚æ‚¤‚ÉƒtƒH[ƒ}ƒbƒg‰Â”\
+    // C#ã®string.Formatã®ã‚ˆã†ã«ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆå¯èƒ½
     spdlog::info( "name: {}, value: {}, lucky: {}", name, value, lucky );
     spdlog::info( "name: {0}, value: {1}, lucky: {2}", name, value, lucky );
 
-    spdlog::info( "int: {:05d}", -12 );  // •5, 0–„‚ß
+    spdlog::info( "int: {:05d}", -12 );  // å¹…5, 0åŸ‹ã‚
     spdlog::info( "double: {:5.2f}", -1.2345678 );
     spdlog::info( "int: {0:d}, hex: {0:x}, oct: {0:o}, bin: {0:b}", 77 );
 

@@ -8,9 +8,9 @@ int main()
 {
     auto&& basicLogger = spdlog::basic_logger_mt( "basic_logger", "basic.log" );
 
-    // ˆÈ‰º‚Ìİ’è‚Ìê‡AÅ‘åƒTƒCƒY1024ƒoƒCƒg‚ÅAƒoƒbƒNƒAƒbƒvƒtƒ@ƒCƒ‹‚ª3‚Â‚Ü‚Åì¬‚³‚ê‚é
-    // rotation.log, rotation.1.log, rotation.2.log rotation.3.log‚ªì¬‚³‚ê‚é
-    // (rotation.3.log‚ªˆê”ÔŒÃ‚¢ƒƒOƒtƒ@ƒCƒ‹)
+    // ä»¥ä¸‹ã®è¨­å®šã®å ´åˆã€æœ€å¤§ã‚µã‚¤ã‚º1024ãƒã‚¤ãƒˆã§ã€ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ•ã‚¡ã‚¤ãƒ«ãŒ3ã¤ã¾ã§ä½œæˆã•ã‚Œã‚‹
+    // rotation.log, rotation.1.log, rotation.2.log rotation.3.logãŒä½œæˆã•ã‚Œã‚‹
+    // (rotation.3.logãŒä¸€ç•ªå¤ã„ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«)
     auto&& rotatingLogger = spdlog::rotating_logger_mt( "rotating_logger", "rotation.log", 1024, 3 );
 
     // async logger
@@ -25,8 +25,8 @@ int main()
         asyncRotatingLogger->info( "async_rotation: " + std::to_string( i ) );
     }
 
-    // VisualStudio‚Ìê‡AmainI—¹‘O‚Édrop_all()‚ğŒÄ‚Ño‚µA
-    // “o˜^‚µ‚½logger‚ğæ‚èœ‚­•K—v‚ª‚ ‚é‚ç‚µ‚¢‚ª...
+    // VisualStudioã®å ´åˆã€mainçµ‚äº†å‰ã«drop_all()ã‚’å‘¼ã³å‡ºã—ã€
+    // ç™»éŒ²ã—ãŸloggerã‚’å–ã‚Šé™¤ãå¿…è¦ãŒã‚ã‚‹ã‚‰ã—ã„ãŒ...
     spdlog::drop_all();
 
     return 0;

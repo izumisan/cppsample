@@ -1,42 +1,11 @@
-#include <QtTest>
+#include <iostream>
 #include <spdlog/spdlog.h>
 #include <spdlog/async.h>
 #include <spdlog/async_logger.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <spdlog/sinks/daily_file_sink.h>
 
-class SpdlogSampl3 : public QObject
-{
-    Q_OBJECT
-
-public:
-    SpdlogSampl3();
-    ~SpdlogSampl3();
-
-private slots:
-    void initTestCase();
-    void cleanupTestCase();
-    void logging_to_console_and_file_test();
-};
-
-SpdlogSampl3::SpdlogSampl3()
-{
-}
-
-SpdlogSampl3::~SpdlogSampl3()
-{
-}
-
-void SpdlogSampl3::initTestCase()
-{
-}
-
-void SpdlogSampl3::cleanupTestCase()
-{
-    spdlog::shutdown();
-}
-
-void SpdlogSampl3::logging_to_console_and_file_test()
+int main()
 {
     {
         // コンソールとログファイルに出力するloggerのセットアップ
@@ -51,6 +20,7 @@ void SpdlogSampl3::logging_to_console_and_file_test()
 
         spdlog::register_logger( logger );  // register_logger()により、spdlog::get(name)でloggerを取得できるようになる.
     }
+
     {
         auto&& logger = spdlog::get( "foo" );
         logger->critical( "critical message" );
@@ -60,8 +30,7 @@ void SpdlogSampl3::logging_to_console_and_file_test()
         logger->debug( "debug message" );
         logger->trace( "trace message" );
     }
+
+    spdlog::shutdown();
+    return 0;
 }
-
-QTEST_APPLESS_MAIN(SpdlogSampl3)
-
-#include "tst_spdlogsampl3.moc"
