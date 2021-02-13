@@ -17,6 +17,9 @@
     - ログファイルへの出力サンプル
 - SpdlogSample3
     - コンソールとファイルに同時に出力するloggerのサンプル
+- MessageFormatting
+    - set_pattern()によるメッセージフォーマットを指定するサンプル
+    
 # ログレベル
 
 - trace
@@ -29,6 +32,8 @@
 
 # 備忘録
 
-- VisualStudioの場合、プログラム終了前に`spdlog::drop_all()`を呼び出す必要があるらしい.
 - `xxx_md`: multi thread版
 - `xxx_st`: single thread版
+- VisualStudioでasync loggerを使用した場合、VisualStudioランタイムのバグにより、デッドロックが発生するので,
+プログラム終了前に`spdlog::shutdown()`を呼び出す必要があるらしい.
+    - https://github.com/gabime/spdlog/wiki/6.-Asynchronous-logging
