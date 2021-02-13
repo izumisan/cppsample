@@ -19,6 +19,9 @@
     - コンソールとファイルに同時に出力するloggerのサンプル
 - MessageFormatting
     - set_pattern()によるメッセージフォーマットを指定するサンプル
+- LevelName
+    - ログレベルの表示名を変更するサンプル
+      - "critical"は文字数が多いので、"fatal"に変更したサンプル
     
 # ログレベル
 
