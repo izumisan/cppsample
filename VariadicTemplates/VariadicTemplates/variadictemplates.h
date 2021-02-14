@@ -30,7 +30,28 @@ void func2( Args... args )
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+// パラメータハックの展開例２
+// 複数の任意の型パラメータを受け取る関数の場合は、
+// 先頭とそれ以外を受け取る関数で再帰処理する.
 
+// パラメータパックが空の場合に呼びされる
+void foo3()
+{
+    std::cout << std::endl;
+}
 
+// 先頭とそれ以外に分割する
+template<class Head, class... Tail>
+void foo3( Head&& head, Tail&&... tail )
+{
+    std::cout << head << ", ";
+    foo3( tail... );  // 再帰
+}
+
+template<class... Args>
+void func3( Args... args )
+{
+    foo3( args... );
+}
 
 #endif // VARIADICTEMPLATES_H
