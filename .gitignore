@@ -33,6 +33,7 @@
 !/SingletonSample/
 !/SpdlogSample/
 !/UserDefinedLiterals/
+!/VariadicTemplates/
 
 # 共通設定
 .qmake.stash
