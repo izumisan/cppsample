@@ -1,7 +1,7 @@
 #ifndef ANGLELITERALS_H
 #define ANGLELITERALS_H
 
-//#include <cmath>
+#include <cmath>
 
 namespace angleliterals
 {
@@ -9,7 +9,7 @@ namespace angleliterals
 /*!
   @brief  360.0_deg -> 2π [rad]
 */
-constexpr double operator""_deg ( const long double value )
+constexpr double operator ""_deg( const long double value )
 {
 //    double pi = 4.0 * std::atan( 1.0 );
 //    return value * pi / 180.0;
@@ -19,7 +19,7 @@ constexpr double operator""_deg ( const long double value )
 /*!
   @brief  1.0_rad -> 1.0 [rad]
 */
-constexpr double operator""_rad ( const long double value )
+constexpr double operator ""_rad( const long double value )
 {
     return value;
 }
