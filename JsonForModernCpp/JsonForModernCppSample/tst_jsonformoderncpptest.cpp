@@ -29,6 +29,8 @@ private Q_SLOTS:
     void STL_like_access();
     void serialize();
     void serialize2();
+
+    void support_comma_in_keyword();
 };
 
 JsonForModernCppTest::JsonForModernCppTest()
@@ -242,6 +244,28 @@ void JsonForModernCppTest::serialize2()
     QCOMPARE( actual["array"][0], 1 );
     QCOMPARE( actual["array"][1], 2 );
     QCOMPARE( actual["array"][2], 3 );
+}
+////////////////////////////////////////////////////////////////////////////////
+/**
+ * @brief keyにコンマ(.)が含まれていても(de)serializeできる
+ */
+void JsonForModernCppTest::support_comma_in_keyword()
+{
+    auto&& jsonString = R"(
+    {
+        "foo": "FOO",
+        "foo.bar": true,
+        "foo.bar.baz": 123
+    })";
+
+    json&& obj = json::parse( jsonString );
+
+    QCOMPARE( obj["foo"], "FOO" );
+    QCOMPARE( obj["foo.bar"], true );
+    QCOMPARE( obj["foo.bar.baz"], 123 );
+
+    std::string serialized = obj.dump();  // std::string への 暗黙的変換
+    QCOMPARE( serialized, R"({"foo":"FOO","foo.bar":true,"foo.bar.baz":123})" );
 }
 
 QTEST_APPLESS_MAIN(JsonForModernCppTest)
