@@ -16,6 +16,7 @@ private slots:
     void cleanup();
 
     void confirm_option();
+    void default_value();
 };
 
 Examples::Examples()
@@ -41,6 +42,7 @@ void Examples::init()
 void Examples::cleanup()
 {
 }
+////////////////////////////////////////////////////////////////////////////////
 
 void Examples::confirm_option()
 {
@@ -73,6 +75,45 @@ void Examples::confirm_option()
         QCOMPARE( result.count( "b" ), 0 );
     }
 }
+////////////////////////////////////////////////////////////////////////////////
+
+void Examples::default_value()
+{
+    cxxopts::Options options( "default_value" );
+    options.add_options()
+        ( "f,file", "config file", cxxopts::value<std::string>()->default_value( "default" ) );
+
+    {
+        // オプションが指定されていない場合、default_value()で指定した値が既定値として設定される
+
+        int argc = 1;
+        const char* argv[] = { "app" };
+        char** arg2 = const_cast<char**>( argv );
+        auto&& result = options.parse( argc, arg2 );
+
+        QCOMPARE( result["f"].as<std::string>(), "default" );
+        QCOMPARE( result["file"].as<std::string>(), "default" );
+    }
+    {
+        int argc = 3;
+        const char* argv[] = { "app", "-f", "path/to/foo" };
+        char** arg2 = const_cast<char**>( argv );
+        auto&& result = options.parse( argc, arg2 );
+
+        QCOMPARE( result["f"].as<std::string>(), "path/to/foo" );
+        QCOMPARE( result["file"].as<std::string>(), "path/to/foo" );
+    }
+    {
+        // オプションは指定するがオプション引数を省略した場合は、parse()で例外となる
+
+        int argc = 2;
+        const char* argv[] = { "app", "-f" };
+        char** arg2 = const_cast<char**>( argv );
+
+        QVERIFY_EXCEPTION_THROWN( options.parse( argc, arg2 ), cxxopts::OptionParseException );
+    }
+}
+
 
 QTEST_APPLESS_MAIN(Examples)
 
