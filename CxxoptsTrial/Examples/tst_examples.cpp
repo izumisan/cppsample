@@ -17,6 +17,7 @@ private slots:
 
     void confirm_option();
     void default_value();
+    void implicit_value();
 };
 
 Examples::Examples()
@@ -83,9 +84,8 @@ void Examples::default_value()
     options.add_options()
         ( "f,file", "config file", cxxopts::value<std::string>()->default_value( "default" ) );
 
+    // オプションが指定されていない場合、default_value()で指定した値が既定値として設定される
     {
-        // オプションが指定されていない場合、default_value()で指定した値が既定値として設定される
-
         int argc = 1;
         const char* argv[] = { "app" };
         char** arg2 = const_cast<char**>( argv );
@@ -94,6 +94,7 @@ void Examples::default_value()
         QCOMPARE( result["f"].as<std::string>(), "default" );
         QCOMPARE( result["file"].as<std::string>(), "default" );
     }
+    // 基本
     {
         int argc = 3;
         const char* argv[] = { "app", "-f", "path/to/foo" };
@@ -104,16 +105,97 @@ void Examples::default_value()
         QCOMPARE( result["file"].as<std::string>(), "path/to/foo" );
     }
     {
-        // オプションは指定するがオプション引数を省略した場合は、parse()で例外となる
+        int argc = 3;
+        const char* argv[] = { "app", "--file", "path/to/foo" };
+        char** arg2 = const_cast<char**>( argv );
+        auto&& result = options.parse( argc, arg2 );
 
+        QCOMPARE( result["f"].as<std::string>(), "path/to/foo" );
+        QCOMPARE( result["file"].as<std::string>(), "path/to/foo" );
+    }
+    // オプションは指定するが、オプション引数を省略した場合は、parse()で例外となる
+    {
         int argc = 2;
         const char* argv[] = { "app", "-f" };
         char** arg2 = const_cast<char**>( argv );
 
         QVERIFY_EXCEPTION_THROWN( options.parse( argc, arg2 ), cxxopts::OptionParseException );
     }
-}
+    {
+        int argc = 2;
+        const char* argv[] = { "app", "--file" };
+        char** arg2 = const_cast<char**>( argv );
 
+        QVERIFY_EXCEPTION_THROWN( options.parse( argc, arg2 ), cxxopts::OptionParseException );
+    }
+}
+////////////////////////////////////////////////////////////////////////////////
+
+void Examples::implicit_value()
+{
+    cxxopts::Options options( "implicit_value" );
+    options.add_options()
+        ( "f,file", "config file", cxxopts::value<std::string>()->implicit_value( "implicit" ) );
+
+    // オプション引数を省略した場合、implicit_value()で指定した値が設定される
+    {
+        int argc = 2;
+        const char* argv[] = { "app", "-f" };
+        char** arg2 = const_cast<char**>( argv );
+        auto&& result = options.parse( argc, arg2 );
+
+        QCOMPARE( result["f"].as<std::string>(), "implicit" );
+        QCOMPARE( result["file"].as<std::string>(), "implicit" );
+    }
+    {
+        int argc = 2;
+        const char* argv[] = { "app", "--file" };
+        char** arg2 = const_cast<char**>( argv );
+        auto&& result = options.parse( argc, arg2 );
+
+        QCOMPARE( result["f"].as<std::string>(), "implicit" );
+        QCOMPARE( result["file"].as<std::string>(), "implicit" );
+    }
+    // implicit_value()を指定した場合、スペース区切りのオプション引数はimplicit_value()で指定した値となる
+    {
+        int argc = 3;
+        const char* argv[] = { "app", "-f", "path/to/foo" };
+        char** arg2 = const_cast<char**>( argv );
+        auto&& result = options.parse( argc, arg2 );
+
+        QCOMPARE( result["f"].as<std::string>(), "implicit" );
+        QCOMPARE( result["file"].as<std::string>(), "implicit" );
+    }
+    {
+        int argc = 3;
+        const char* argv[] = { "app", "--file", "path/to/foo" };
+        char** arg2 = const_cast<char**>( argv );
+        auto&& result = options.parse( argc, arg2 );
+
+        QCOMPARE( result["f"].as<std::string>(), "implicit" );
+        QCOMPARE( result["file"].as<std::string>(), "implicit" );
+    }
+    // 基本
+    {
+        int argc = 2;
+        const char* argv[] = { "app", "--file=path/to/foo" };
+        char** arg2 = const_cast<char**>( argv );
+        auto&& result = options.parse( argc, arg2 );
+
+        QCOMPARE( result["f"].as<std::string>(), "path/to/foo" );
+        QCOMPARE( result["file"].as<std::string>(), "path/to/foo" );
+    }
+    // オプションを省略した場合、既定値は設定されない
+    {
+        int argc = 1;
+        const char* argv[] = { "app" };
+        char** arg2 = const_cast<char**>( argv );
+        auto&& result = options.parse( argc, arg2 );
+
+        QCOMPARE( result["f"].count(), 0 );
+        QCOMPARE( result["file"].count(), 0 );
+    }
+}
 
 QTEST_APPLESS_MAIN(Examples)
 
