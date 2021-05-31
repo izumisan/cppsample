@@ -16,6 +16,7 @@ private slots:
     void cleanup();
 
     void confirm_option();
+    void option_argument();
     void default_value();
     void implicit_value();
 };
@@ -74,6 +75,53 @@ void Examples::confirm_option()
         QCOMPARE( result.count( "aaa" ), 2 );
 
         QCOMPARE( result.count( "b" ), 0 );
+    }
+}
+////////////////////////////////////////////////////////////////////////////////
+
+void Examples::option_argument()
+{
+    cxxopts::Options options( "option_argument" );
+    options.add_options()
+        ( "f,file", "input file", cxxopts::value<std::string>() );
+
+    // OK case: "-short_name option_argument"
+    {
+        int argc = 3;
+        const char* argv[] = { "app", "-f", "path/to/file" };
+        char** arg2 = const_cast<char**>( argv );
+        auto&& result = options.parse( argc, arg2 );
+
+        QCOMPARE( result["f"].as<std::string>(), "path/to/file" );
+        QCOMPARE( result["file"].as<std::string>(), "path/to/file" );
+    }
+    // OK case: "--long_name option_argument"
+    {
+        int argc = 3;
+        const char* argv[] = { "app", "--file", "path/to/file" };
+        char** arg2 = const_cast<char**>( argv );
+        auto&& result = options.parse( argc, arg2 );
+
+        QCOMPARE( result["f"].as<std::string>(), "path/to/file" );
+        QCOMPARE( result["file"].as<std::string>(), "path/to/file" );
+    }
+    // OK case: "--long_name=option_argument"
+    {
+        int argc = 2;
+        const char* argv[] = { "app", "--file=path/to/file" };
+        char** arg2 = const_cast<char**>( argv );
+        auto&& result = options.parse( argc, arg2 );
+
+        QCOMPARE( result["f"].as<std::string>(), "path/to/file" );
+        QCOMPARE( result["file"].as<std::string>(), "path/to/file" );
+    }
+    // NG case: "-short_name=option_argument"
+    {
+        int argc = 2;
+        const char* argv[] = { "app", "-f=path/to/file" };
+        char** arg2 = const_cast<char**>( argv );
+
+        QVERIFY_EXCEPTION_THROWN( options.parse( argc, arg2 ), cxxopts::OptionParseException );
     }
 }
 ////////////////////////////////////////////////////////////////////////////////
