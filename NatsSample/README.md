@@ -6,6 +6,8 @@
 
 - Pub/Sub
     - Pub/Subの基本サンプル
+- RPC
+    - RPCのサンプル
 
 # ビルド
 

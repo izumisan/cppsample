@@ -41,6 +41,7 @@ int main()
                 // - natsConnection_Publish(): バイト列をpubする
                 // - natsConnection_PublishString(): 文字列データをpubする
                 // - natsConnection_PublishMsg(): natsMsgオブジェクトをpubする
+                natsConnection_Publish( connection, routingKey.c_str(), body.c_str(), static_cast<int>( body.size() ) );
                 natsConnection_PublishString( connection, routingKey.c_str(), body.c_str() );
             }
         }
