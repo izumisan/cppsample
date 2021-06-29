@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package basic;
+
+service FooService
+{
+    rpc FooMethod (FooRequest) returns (FooReply) {}
+}
+
+message FooRequest
+{
+    string value = 1;
+}
+
+message FooReply
+{
+    string value = 1;
+}
