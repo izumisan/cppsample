@@ -5,6 +5,12 @@
 
 #include "fooserviceimpl.h"
 
+// gRPCサーバー側プログラム
+// 
+// 1. protoファイルより自動生成された`FooService::Service`を継承したサービスクラスを定義・実装する
+// 2. サービスクラスのインスタンスを`grpc::ServerBuilder`に登録する
+// 3. `grpc::ServerBuilder::BuildAndStart()`により、サーバーを起動する
+
 int main()
 {
     std::cout << "Basic server start..." << std::endl;
@@ -13,10 +19,10 @@ int main()
     basic::FooServiceImpl service {};
 
     grpc::ServerBuilder builder {};
-    builder.AddListeningPort( host, grpc::InsecureServerCredentials() );
     builder.RegisterService( &service );
+    builder.AddListeningPort( host, grpc::InsecureServerCredentials() );
 
-    std::unique_ptr<grpc::Server> server( builder.BuildAndStart() );
+    auto&& server = builder.BuildAndStart();
 
     std::cout << "running..." << std::endl;
 

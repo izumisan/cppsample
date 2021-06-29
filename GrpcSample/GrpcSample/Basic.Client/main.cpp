@@ -5,13 +5,21 @@
 
 #include "foo.grpc.pb.h"
 
+// gRPCクライアント側プログラム
+//
+// 1. `grpc::CreateChannel()`により、コネクションを確立する
+// 2. protoファイルより自動生成された`FooService::NewStub()`により、クライアントを生成する
+// 3. クライアントを介して、関数をリモート実行する
+
 int main()
 {
     std::cout << "Basic client start..." << std::endl;
 
     const std::string host( "localhost:27182" );
     auto&& channel = grpc::CreateChannel( host, grpc::InsecureChannelCredentials() );
-    auto&& client = std::make_unique<basic::FooService::Stub>( basic::FooService::Stub( channel ) );
+    auto&& client = basic::FooService::NewStub( channel );
+    // これもでOK
+    //auto&& client = std::make_unique<basic::FooService::Stub>( basic::FooService::Stub( channel ) );
 
     grpc::ClientContext context {};
 
