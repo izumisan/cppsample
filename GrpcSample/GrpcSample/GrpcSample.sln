@@ -21,11 +21,20 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ServerStreamingRpc.Shared",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ServerStreamingRpc.Client", "ServerStreamingRpc.Client\ServerStreamingRpc.Client.vcxproj", "{7CE9E010-4F84-4C67-B0FB-97C86924A29F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClientStreamingRpc.Server", "ClientStreamingRpc.Server\ClientStreamingRpc.Server.vcxproj", "{60BF4ADF-E7EA-48A9-A2C1-A3BCC94BD5A3}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClientStreamingRpc.Shared", "ClientStreamingRpc.Shared\ClientStreamingRpc.Shared.vcxitems", "{13D6725A-E018-448B-92AE-9ABD9A1E5647}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClientStreamingRpc.Client", "ClientStreamingRpc.Client\ClientStreamingRpc.Client.vcxproj", "{67C4C60E-A85D-4D41-8C34-04B164B6F5D1}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		ClientStreamingRpc.Shared\ClientStreamingRpc.Shared.vcxitems*{13d6725a-e018-448b-92ae-9abd9a1e5647}*SharedItemsImports = 9
 		Basic.Proto\Basic.Proto.vcxitems*{2371df25-c41e-4b52-a784-bd31853e10dd}*SharedItemsImports = 4
 		MultiService.Shared\MultiService.Shared.vcxitems*{37d97dbb-dce4-4726-8016-52db808720f0}*SharedItemsImports = 4
 		ServerStreamingRpc.Shared\ServerStreamingRpc.Shared.vcxitems*{3dd7ac46-0478-4214-b6e8-3f6ff3d501d9}*SharedItemsImports = 9
+		ClientStreamingRpc.Shared\ClientStreamingRpc.Shared.vcxitems*{60bf4adf-e7ea-48a9-a2c1-a3bcc94bd5a3}*SharedItemsImports = 4
+		ClientStreamingRpc.Shared\ClientStreamingRpc.Shared.vcxitems*{67c4c60e-a85d-4d41-8c34-04b164b6f5d1}*SharedItemsImports = 4
 		ServerStreamingRpc.Shared\ServerStreamingRpc.Shared.vcxitems*{7ce9e010-4f84-4c67-b0fb-97c86924a29f}*SharedItemsImports = 4
 		MultiService.Shared\MultiService.Shared.vcxitems*{7d1fb2d3-e2aa-4e0e-8724-688825811fd4}*SharedItemsImports = 9
 		MultiService.Shared\MultiService.Shared.vcxitems*{917800b8-d322-440c-9987-c19093f5b10c}*SharedItemsImports = 4
@@ -88,6 +97,22 @@ Global
 		{7CE9E010-4F84-4C67-B0FB-97C86924A29F}.Release|x64.Build.0 = Release|x64
 		{7CE9E010-4F84-4C67-B0FB-97C86924A29F}.Release|x86.ActiveCfg = Release|Win32
 		{7CE9E010-4F84-4C67-B0FB-97C86924A29F}.Release|x86.Build.0 = Release|Win32
+		{60BF4ADF-E7EA-48A9-A2C1-A3BCC94BD5A3}.Debug|x64.ActiveCfg = Debug|x64
+		{60BF4ADF-E7EA-48A9-A2C1-A3BCC94BD5A3}.Debug|x64.Build.0 = Debug|x64
+		{60BF4ADF-E7EA-48A9-A2C1-A3BCC94BD5A3}.Debug|x86.ActiveCfg = Debug|Win32
+		{60BF4ADF-E7EA-48A9-A2C1-A3BCC94BD5A3}.Debug|x86.Build.0 = Debug|Win32
+		{60BF4ADF-E7EA-48A9-A2C1-A3BCC94BD5A3}.Release|x64.ActiveCfg = Release|x64
+		{60BF4ADF-E7EA-48A9-A2C1-A3BCC94BD5A3}.Release|x64.Build.0 = Release|x64
+		{60BF4ADF-E7EA-48A9-A2C1-A3BCC94BD5A3}.Release|x86.ActiveCfg = Release|Win32
+		{60BF4ADF-E7EA-48A9-A2C1-A3BCC94BD5A3}.Release|x86.Build.0 = Release|Win32
+		{67C4C60E-A85D-4D41-8C34-04B164B6F5D1}.Debug|x64.ActiveCfg = Debug|x64
+		{67C4C60E-A85D-4D41-8C34-04B164B6F5D1}.Debug|x64.Build.0 = Debug|x64
+		{67C4C60E-A85D-4D41-8C34-04B164B6F5D1}.Debug|x86.ActiveCfg = Debug|Win32
+		{67C4C60E-A85D-4D41-8C34-04B164B6F5D1}.Debug|x86.Build.0 = Debug|Win32
+		{67C4C60E-A85D-4D41-8C34-04B164B6F5D1}.Release|x64.ActiveCfg = Release|x64
+		{67C4C60E-A85D-4D41-8C34-04B164B6F5D1}.Release|x64.Build.0 = Release|x64
+		{67C4C60E-A85D-4D41-8C34-04B164B6F5D1}.Release|x86.ActiveCfg = Release|Win32
+		{67C4C60E-A85D-4D41-8C34-04B164B6F5D1}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
