@@ -1,0 +1,17 @@
+syntax = "proto3";
+package ClientStreamingRpc;
+
+service FooService
+{
+    rpc Total( stream FooRequest ) returns ( FooResponse ) {}
+}
+
+message FooRequest
+{
+    int32 value = 1;
+}
+
+message FooResponse
+{
+    int32 value = 1;
+}

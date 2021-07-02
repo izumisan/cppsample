@@ -1,0 +1,22 @@
+syntax = "proto3";
+package MultiService;
+
+service Foo1Service
+{
+    rpc Foo( FooRequest ) returns ( FooResponse ) {}
+}
+
+service Foo2Service
+{
+    rpc Foo( FooRequest ) returns ( FooResponse ) {}
+}
+
+message FooRequest
+{
+    int32 value = 1;
+}
+
+message FooResponse
+{
+    int32 value = 1;
+}
