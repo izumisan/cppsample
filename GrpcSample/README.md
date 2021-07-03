@@ -1,4 +1,6 @@
-# gRPC for C++
+# gRPC
+
+gRPC for C++
 
 # overview
 
@@ -13,8 +15,11 @@
 
 # protoファイルのコンバート
 
-```
+```sh
+# protobuf用コードを生成する
 > protoc.exe --proto_path=./ --cpp_out=./ path/to/proto
+
+# gRPC用コードを生成する
 > protoc.exe --proto_path=./ --grpc_out=./ --plugin=protoc_gen_grpc=grpc_cpp_plugin.exe path/to/proto
 ```
 
@@ -32,6 +37,18 @@
 1. 下記のlibファイルを追加する
     - `ws2_32.lib`
     - `advapi32.lib`
+
+# サーバー側プログラムGist
+
+1. protoファイルより自動生成された`{サービス名}::Service`クラスを継承したサービスクラスを定義・実装する
+1. サービスクラスのインスタンスを`grpc::ServerBuilder`に登録する
+1. `BuildAndStart()`により、サーバーを起動する
+
+# クライアント側プログラムGist
+
+1. `grpc::CreateChannel()`により、コネクションを確立する
+1. protoファイルより自動生成された`{サービス名}::NewStub()`により、クライアントを生成する
+1. クライアントを介して、サービス関数を実行する
 
 # 備忘録
 
