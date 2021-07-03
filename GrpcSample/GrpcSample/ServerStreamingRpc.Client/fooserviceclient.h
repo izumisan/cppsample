@@ -19,7 +19,11 @@ public:
         std::vector<ServerStreamingRpc::FooResponse> ret {};
 
         ::grpc::ClientContext context {};
+
+        // protoファイルで定義したサービス関数(GetFooList)により、
+        // レスポンスストリームリーダー(ClientReader)を取得できる
         auto&& reader = m_client->GetFooList( &context, request );
+
         ServerStreamingRpc::FooResponse res {};
         while ( reader->Read( &res ) )
         {
