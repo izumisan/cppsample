@@ -20,6 +20,9 @@ public:
 
         ::grpc::ClientContext context {};
         ClientStreamingRpc::FooResponse response {};
+
+        // protoファイルで定義したサービス関数(Total)により、
+        // リクエストライター(ClientWriter)を取得できる
         auto&& writer = m_client->Total( &context, &response );
         for ( auto&& value : values )
         {
@@ -27,7 +30,11 @@ public:
             req.set_value( value );
             writer->Write( req );
         }
+
+        // リクエストの書き込みが終了したことをサーバーに通知する
         writer->WritesDone();
+
+        // Finish()の実行により、サーバーからのレスポンスを取得する
         auto&& status = writer->Finish();
         if ( status.ok() )
         {
