@@ -2,6 +2,19 @@
 
 C++用のnugetパッケージを作ってみた
 
+# ファイル構成
+
+- {working directory}
+    - build/
+        - native/
+            - include/
+            - lib/
+            - xxx.props
+    - xxx.nuspec
+
+
+- `nuget pack`時、`nuspec`ファイルと同階層(`working directory`)のファイルは`nupkg`に含まれてしまう
+
 # 覚書
 
 - nuspecファイルのひな形を作成する
@@ -12,8 +25,39 @@ C++用のnugetパッケージを作ってみた
     ```
     > nuget pack path/to/nuspec
     ```
-- `nuget pack`時、`nuspec`ファイルと同階層のファイルは全て`nupkg`に含めてしまう？
-    - `nuspec`ファイルと同じ場所に`nuget.exe`を置いていたら、`nupkg`ファイルに`nuget.exe`が含まれていた
+
+# プロパティシート(*.props)テンプレート
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <ItemDefinitionGroup>
+        <ClCompile>
+            <!-- プリプロセッサの定義 -->
+            <PreprocessorDefinitions>xxx;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+            <!-- include path -->
+            <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+        </ClCompile>
+        <Link>
+            <!-- library path -->
+            <AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)lib/$(Configuration)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+        </Link>
+    </ItemDefinitionGroup>
+    <!-- Configurationで設定を切り替える場合 -->
+    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+        <Link>
+            <!-- debug library -->
+            <AdditionalDependencies>xxxd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+        </Link>
+    </ItemDefinitionGroup>
+    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+        <Link>
+            <!-- release library -->
+            <AdditionalDependencies>xxx.lib;%(AdditionalDependencies)</AdditionalDependencies>
+        </Link>
+    </ItemDefinitionGroup>
+</Project>
+```
 
 # 参考
 
