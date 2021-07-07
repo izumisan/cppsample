@@ -100,6 +100,28 @@ FooApp/
 1. `Generate`ボタンを押下する
 1. `Open Project`ボタンを押下することで、VisualStudioのソリューションが起動する
 
+# 変数
+
+- `set( <variable name> <value> )`
+- `set( <variable name> <value> ... )`
+- 大文字、小文字は区別される
+- 文字列 or 文字列リスト として管理される
+- `${ <variable name> }`
+- `unset( <variable name> )`
+
+# キャッシュ変数
+
+- configure時にキャッシュされる変数
+- `set( <variable name> <value> CACHE <type> <description> )`
+- typeには、`BOOL`, `PATH`, `FILEPATH`, `STRING`, `INTERNAL`, `UNINITIALIZED` が指定できる
+- キャッシュ変数の参照は、普通の変数同様、`${ <variable name> }` の他、`$CACHE{ <variable name> }`で可能
+- `unset( <variable name> CACHE )`
+
+# 環境変数
+
+- `set( ENV{ <variable name> } <value> )`
+- `set( ENV{ <variable name> } <value> ... )`
+- `$ENV{ <variable name> }`
 
 # `ALL_BUILD` と `ZERO_CHECK`
 
@@ -108,6 +130,37 @@ FooApp/
 - ZERO_CHECK
     - Generate後にCMakeファイルを編集した場合、その編集をプロジェクトファイルに反映するためのプロジェクト
     - `CMakeLists.txt`を編集した際は、`ZERO_CHECK`をビルドすればプロジェクトに反映（更新）される
+
+# `find_package(<PackageName>)`
+
+- Moduleモード
+    - `<PackageName>.cmake` or `Find<PackageName>.cmake`を探す
+    - 検索パスは
+        - `CMAKE_MODULE_PATH`
+        - デフォルトのモジュール場所(`path/to/CMake/share/cmake/Modules/`)
+- Configモード
+    - `<PackageName>Config.cmake` or `<lower-case-package-name>-config.cmake` を探す
+    - 検索パスは
+        - `<PackageName>_DIR`
+        - `<PackageName>_ROOT`
+        - etc.
+
+## Module
+
+- よく使うCMake関数
+- 外部ライブラリ情報
+    - `<PackageName>_INCLUDE_DIRS`
+    - `<PackageName>_LIBRARY_DIRS`
+    - `<PackageName>_LIBRARIES`
+    - `<PackageName>_DEFINITIONS`
+
+## Config
+
+- 設定項目を記した設定ファイル
+    - `<PackageName>_INCLUDE_DIRS`
+    - `<PackageName>_LIBRARY_DIRS`
+    - `<PackageName>_LIBRARIES`
+    - `<PackageName>_DEFINITIONS`
 
 # 参考
 
@@ -119,3 +172,5 @@ FooApp/
     - [CMake: キャッシュ変数と環境変数](https://qiita.com/mrk_21/items/186439952a6665184444)
     - [CMake: 便利なコマンド・変数](https://qiita.com/mrk_21/items/5e7ca775b463a4141a58)
 - [CMakeを使ってみた（2）もう少しまともなプロジェクト](https://www.wagavulin.jp/entry/2011/11/27/222642)
+- [勝手に作るCMake入門 その2 プロジェクトの階層化](https://kamino.hatenablog.com/entry/cmake_tutorial2)
+- [勝手に作るCMake入門 その4 外部ライブラリを利用する](https://kamino.hatenablog.com/entry/cmake_tutorial4)
