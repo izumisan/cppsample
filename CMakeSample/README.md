@@ -174,3 +174,4 @@ FooApp/
 - [CMakeを使ってみた（2）もう少しまともなプロジェクト](https://www.wagavulin.jp/entry/2011/11/27/222642)
 - [勝手に作るCMake入門 その2 プロジェクトの階層化](https://kamino.hatenablog.com/entry/cmake_tutorial2)
 - [勝手に作るCMake入門 その4 外部ライブラリを利用する](https://kamino.hatenablog.com/entry/cmake_tutorial4)
+- [cmake チートシート - Qoosky](https://www.qoosky.io/techs/814fda555d)
