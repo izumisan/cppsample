@@ -10,9 +10,9 @@ project(FooApp1 VERSION 0.1.0)
 
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+# qmake(FooApp1.pro)の場合
+# include(../foo/src/src.pri)
 include(../foo/src/src.cmake)
-
-include_directories(${FOO_INCLUDEPATH})
 
 add_executable(FooApp1 
     main.cpp

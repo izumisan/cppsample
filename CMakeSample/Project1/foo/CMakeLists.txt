@@ -11,8 +11,6 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 include(src/src.cmake)
 
-include_directories( ${FOO_INCLUDEPATH} )
-
 add_library( ${CMAKE_PROJECT_NAME}
     STATIC
     ${FOO_HEADERS}
