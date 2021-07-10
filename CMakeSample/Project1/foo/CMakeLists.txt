@@ -1,3 +1,9 @@
+# foo
+#
+# qmake使用時と同様の感覚でcmakeファイルを構成してみたサンプル (libプロジェクト側)
+# - foo.pro -> CMakeLists.txt
+# - src/src.pri -> src/src.cmake
+#
 cmake_minimum_required(VERSION 3.0.0)
 project(foo VERSION 0.1.0)
 
