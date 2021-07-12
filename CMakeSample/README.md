@@ -175,3 +175,8 @@ FooApp/
 - [勝手に作るCMake入門 その2 プロジェクトの階層化](https://kamino.hatenablog.com/entry/cmake_tutorial2)
 - [勝手に作るCMake入門 その4 外部ライブラリを利用する](https://kamino.hatenablog.com/entry/cmake_tutorial4)
 - [cmake チートシート - Qoosky](https://www.qoosky.io/techs/814fda555d)
+- [CMakeスクリプトを作成する際のガイドライン -Qiita](https://qiita.com/shohirose/items/5b406f060cd5557814e9)
+- [CMake Best Practices - Github](http://fujii.github.io/2015/10/10/cmake-best-practice/)
+- [Effective Modern CMake - Github](https://gist.github.com/mbinna/c61dbb39bca0e4fb7d1f73b0d66a4fd1)
+- [CMakeとIDEを連携させる](https://qiita.com/shohirose/items/3d39ecc68c7ef1874734)
+- [お手軽な xxx-config.cmake の作成方法](https://qiita.com/osamu0329/items/134de918c0ffa7f0557b)
