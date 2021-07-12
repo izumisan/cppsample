@@ -1,15 +1,19 @@
-# src/CMakeLists.txt
+# src/src.cmake
 target_include_directories( ${CMAKE_PROJECT_NAME}
     PUBLIC
-        ${CMAKE_CURRENT_SOURCE_DIR}
+        ${CMAKE_CURRENT_LIST_DIR}
     )
 # Note:
-# `target_sources()`には絶対パスで指定する必要がある.
-# v3.13以降では、target_sources()は相対パスで指定しても自動で絶対パスにしてくれるっぽい.
-# (CMAKE_CURRENT_SOURCE_DIR からの相対パスかな？)
+# .cmakeの場合、CMAKE_CURRENT_SOURCE_DIRがcmakeファイルの場所と異なるので
+# 相対パス指定は難あり
+# target_sources( ${CMAKE_PROJECT_NAME}
+#     PRIVATE
+#         foo.h foo.cpp
+#     )
 target_sources( ${CMAKE_PROJECT_NAME}
     PRIVATE
-        foo.h foo.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/foo.h
+        ${CMAKE_CURRENT_LIST_DIR}/foo.cpp
     )
 # Note:
 # file(GLOB)を使用すると、ファイル追加時にVisualStudioからプロジェクト更新できない
