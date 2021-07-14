@@ -162,6 +162,15 @@ FooApp/
     - `<PackageName>_LIBRARIES`
     - `<PackageName>_DEFINITIONS`
 
+# `install()`
+
+- 実行ファイル(*.exe)を`bin`ディレクトリ下にコピーする
+    - `install(TARGETS <target> RUNTIME DESTINATION bin)`
+- 共有ライブラリ(*.dll)を`lib`ディレクトリ下にコピーする
+    - `install(TARGETS <target> LIBRARY DESTINATION lib)`
+- 静的ライブラリ(*.lib)を`lib`ディレクトリ下にコピーする
+    - `install(TARGETS <target> ARCHIVE DESTINATION lib)`
+
 # 参考
 
 - [CMake Advent Calendar 2014](https://qiita.com/advent-calendar/2014/cmake)
