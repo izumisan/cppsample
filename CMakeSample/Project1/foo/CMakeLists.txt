@@ -22,3 +22,24 @@ target_compile_features( ${CMAKE_PROJECT_NAME} PRIVATE cxx_std_17 )
 message("FOO_INCLUDEPATH: ${FOO_INCLUDEPATH}")
 message("FOO_HEADERS: ${FOO_HEADERS}")
 message("FOO_SOURCES: ${FOO_SOURCES}")
+
+install( TARGETS ${CMAKE_PROJECT_NAME} 
+    ARCHIVE DESTINATION lib/debug
+    CONFIGURATIONS debug )
+install( TARGETS ${CMAKE_PROJECT_NAME} 
+    ARCHIVE DESTINATION lib/release 
+    CONFIGURATIONS release )
+
+# ファイル単位でコピーする場合
+# install( FILES src/foo.h DESTINATION include )
+
+# ディレクトリ単位でコピーする場合
+# 「src/」と指定した場合、srcディレクトリの"中身"がincludeディレクトリ下にコピーされる
+# install( DIRECTORY src/ DESTINATION include )
+
+# 「src」と'/'なしで指定した場合、srcディレクトリ"自体"がincludeディレクトリ下にコピーされる
+# install( DIRECTORY src DESTINATION include )
+
+# "FILES_MATCHING"でフィルタリング可能
+install( DIRECTORY src/ DESTINATION include
+    FILES_MATCHING PATTERN "*.h" )

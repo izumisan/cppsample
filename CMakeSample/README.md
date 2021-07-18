@@ -131,6 +131,11 @@ FooApp/
     - Generate後にCMakeファイルを編集した場合、その編集をプロジェクトファイルに反映するためのプロジェクト
     - `CMakeLists.txt`を編集した際は、`ZERO_CHECK`をビルドすればプロジェクトに反映（更新）される
 
+# CMAKE_PROJECT_NAME vs PROJECT_NAME
+
+- `CMAKE_PROJECT_NAME`は、rootの`CMakeLists.txt`の`project()`で指定したプロジェクト名
+- `PROJECT_NAME`は、最後にコールされた`project()`で指定したプロジェクト名
+
 # `find_package(<PackageName>)`
 
 - Moduleモード
@@ -161,6 +166,35 @@ FooApp/
     - `<PackageName>_LIBRARY_DIRS`
     - `<PackageName>_LIBRARIES`
     - `<PackageName>_DEFINITIONS`
+
+# `install()`
+
+- 実行ファイル(*.exe)を`bin`ディレクトリ下にコピーする
+    - `install(TARGETS <target> RUNTIME DESTINATION bin)`
+- 共有ライブラリ(*.dll)を`lib`ディレクトリ下にコピーする
+    - `install(TARGETS <target> LIBRARY DESTINATION lib)`
+- 静的ライブラリ(*.lib)を`lib`ディレクトリ下にコピーする
+    - `install(TARGETS <target> ARCHIVE DESTINATION lib)`
+- ファイルコピー
+    - `install(FILES path/to/file DESTINATION path/to/dir)`
+- ディレクトリコピー
+    - `install(DIRECTORY path/to/dir/ DESTINATION path/to/dir)`
+    - `install(DIRECTORY path/to/dir DESTINATION path/to/dir)`
+    - スラッシュありの場合、ディレクトリの中身が指定したディレクトリにコピーされる
+    - スラッシュなしの場合、ディレクトリ自体が指定したディレクトリにコピーされる
+- ファイルコピー（パターンマッチング）
+    - `install(DIRECTORY path/to/dir/ DESTINATION include FILES_MATCHING PATTERN "*.h" )`
+    - `path/to/dir`ディレクトリ下の`*.h`ファイルを`include`ディレクトリにコピーする
+    - サブディレクトリも対象になるっぽい（再帰的）
+
+# IDE(Visual Studio etc.) Filter
+
+- デフォルトでは、`Header Files`, `Source Files`のフィルターになる
+    - ソースコードが階層に分けられていても、平坦化される
+- `source_group()`を指定すると、任意のフィルターが作れる
+    - `source_group()`で"foo/bar"のように指定すると、入れ子にすることができる(v3.18以上)
+    - `TREE`を指定すると、ディレクトリ構造を維持する
+- [source_group](https://cmake.org/cmake/help/latest/command/source_group.html)
 
 # 参考
 
