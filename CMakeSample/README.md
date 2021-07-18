@@ -187,12 +187,14 @@ FooApp/
     - `path/to/dir`ディレクトリ下の`*.h`ファイルを`include`ディレクトリにコピーする
     - サブディレクトリも対象になるっぽい（再帰的）
 
-# Visual Studio Filter
+# IDE(Visual Studio etc.) Filter
 
 - デフォルトでは、`Header Files`, `Source Files`のフィルターになる
     - ソースコードが階層に分けられていても、平坦化される
 - `source_group()`を指定すると、任意のフィルターが作れる
-    - `source_group()`で"foo/bar"のように指定すると、入れ子にすることができる
+    - `source_group()`で"foo/bar"のように指定すると、入れ子にすることができる(v3.18以上)
+    - `TREE`を指定すると、ディレクトリ構造を維持する
+- [source_group](https://cmake.org/cmake/help/latest/command/source_group.html)
 
 # 参考
 
