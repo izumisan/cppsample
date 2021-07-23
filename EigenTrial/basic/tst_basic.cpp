@@ -20,6 +20,8 @@ private slots:
 
     void n_vector();
 
+    void elements_is_not_initialized_by_default();
+
 private:
     template<class T>
     std::string serialize( const T& m )
@@ -229,6 +231,22 @@ void Basic::n_vector()
         v3.normalize();
         QCOMPARE( v3, Eigen::Vector2d( 0.6, 0.8 ) );
     }
+}
+
+/**
+ * @brief デフォルトでは、要素は不定値となる
+ *
+ * EIGEN_INITIALIZE_MATRICES_BY_ZERO を定義することにより、0で初期化されるようになる
+ * see. InitializeMacroTest
+ */
+void Basic::elements_is_not_initialized_by_default()
+{
+    auto&& m = new Eigen::Matrix2i();
+    QVERIFY( (*m)(0,0) != 0 );
+    QVERIFY( (*m)(0,1) != 0 );
+    QVERIFY( (*m)(1,0) != 0 );
+    QVERIFY( (*m)(1,1) != 0 );
+    delete m;
 }
 
 QTEST_APPLESS_MAIN(Basic)
