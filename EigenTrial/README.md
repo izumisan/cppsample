@@ -5,6 +5,19 @@
 - [Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page)
 - [Gitlab](https://gitlab.com/libeigen/eigen)
 
+# マクロ
+
+- `EIGEN_INITIALIZE_MATRICES_BY_ZERO`
+    - デフォルトではmatrixやarrayの要素は不定値だが、定義することにより要素が0で初期化される
+- `EIGEN_MPL2_ONLY`
+    - 定義することにより、LGPLの機能を無効にする
+- `EIGEN_NO_DEBUG`
+    - 定義することにより、Eigenアサーションが無効になる（`NODEBUG`が定義されていない場合のみ）
+    - かなり高速になるらしい
+- `EIGEN_NO_STATIC_ASSERT`
+    - 定義することにより、静的アサーションが無効になる（コンパイル時間短縮）
+- [その他のマクロ](https://eigen.tuxfamily.org/dox/TopicPreprocessorDirectives.html)
+
 # Link
 
 - [C++行列計算ライブラリEigen入門 - Qiita](https://qiita.com/yohm/items/a03006790dc1e54a87be)
