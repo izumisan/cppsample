@@ -18,6 +18,7 @@ private slots:
     void scaling();
     void rotation();
     void rotation2();
+    void quaternion();
 
 private:
     template<class T>
@@ -110,6 +111,30 @@ void Transform::rotation2()
         auto&& rotated = quat * v;  // クォータニオンによる回転
         qDebug() << rotated(0) << rotated(1) << rotated(2);
     }
+}
+
+void Transform::quaternion()
+{
+    // 方向ベクトル(λx,λy,λz)を回転軸として角度θ回転させるクォータニオン(四元数ベクトル)
+    // -> (w: cos(θ/2), x: λxsin(θ/2), y: λysin(θ/2), z: λzsin(θ/2))
+
+    // Z軸(0,0,1)周りに45deg回転するクォータニオン
+    auto&& theta = 45.0 * deg2rad_;
+    auto&& theta_2 = theta * 0.5;
+    Eigen::Quaterniond q( qCos( theta_2 ), 0.0, 0.0, qSin( theta_2 ) );  // コンストラクタで(w,x,y,z)を指定
+
+    Eigen::Vector3d v = Eigen::Vector3d::UnitX();
+
+    // ベクトルvをクォータニオンqで回転(qvq_conjugate)
+    auto&& v2 = q * v;  // "*"演算子で、 q * v * q.conjugate() を実施してくれるので、共役成分を含める必要はない
+    qDebug() << v2(0) << v2(1) << v2(2);  //=> 0.707107 0.707107 0
+
+    // 共役クォータニオン
+    // (共役なクォータニオンは逆回転を表す -> Z軸周りに-45deg回転)
+    auto&& q2 = q.conjugate();
+
+    auto&& v3 = q2 * v;
+    qDebug() << v3(0) << v3(1) << v3(2);  //=> 0.707107 -0.707107 0
 }
 
 QTEST_APPLESS_MAIN(Transform)
