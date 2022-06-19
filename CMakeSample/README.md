@@ -131,7 +131,7 @@ FooApp/
     - Generate後にCMakeファイルを編集した場合、その編集をプロジェクトファイルに反映するためのプロジェクト
     - `CMakeLists.txt`を編集した際は、`ZERO_CHECK`をビルドすればプロジェクトに反映（更新）される
 
-# CMAKE_PROJECT_NAME vs PROJECT_NAME
+# `CMAKE_PROJECT_NAME` vs `PROJECT_NAME`
 
 - `CMAKE_PROJECT_NAME`は、rootの`CMakeLists.txt`の`project()`で指定したプロジェクト名
 - `PROJECT_NAME`は、最後にコールされた`project()`で指定したプロジェクト名
