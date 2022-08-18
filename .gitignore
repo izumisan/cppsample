@@ -31,6 +31,7 @@
 !/OpenCppCoverageExample/
 !/ProcessInfo/
 !/ProtobufSample/
+!/SharedMemory/
 !/SingletonSample/
 !/SpdlogSample/
 !/StopwatchSample/
@@ -40,6 +41,9 @@
 # 共通設定
 .qmake.stash
 .opencppcov
+
+# cmakeビルドディレクトリ
+build/
 
 # VisualStudio.gitignore
 #-------------------------------------------------------------------------------
