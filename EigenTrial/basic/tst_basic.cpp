@@ -19,6 +19,7 @@ private slots:
     void matrix_operations();
 
     void n_vector();
+    void vector_product();
 
     void elements_is_not_initialized_by_default();
 
@@ -214,6 +215,22 @@ void Basic::n_vector()
     QCOMPARE( v3(0), 3.0 );
     QCOMPARE( v3(1), 4.0 );
 
+    // 単位ベクトル(基本ベクトル, 軸ベクトル)
+    {
+        // X軸方向2次元単位ベクトル
+        QCOMPARE( Eigen::VectorXd::Unit( 2, 0 ), Eigen::Vector2d( 1, 0 ) );
+
+        // X軸方向3次元単位ベクトル
+        QCOMPARE( Eigen::VectorXd::Unit( 3, 0 ), Eigen::Vector3d( 1, 0, 0 ) );
+        QCOMPARE( Eigen::VectorXd::Unit( 3, 0 ), Eigen::Vector3d::UnitX() );
+        // Y軸方向3次元単位ベクトル
+        QCOMPARE( Eigen::VectorXd::Unit( 3, 1 ), Eigen::Vector3d( 0, 1, 0 ) );
+        QCOMPARE( Eigen::VectorXd::Unit( 3, 1 ), Eigen::Vector3d::UnitY() );
+        // Z軸方向3次元単位ベクトル
+        QCOMPARE( Eigen::VectorXd::Unit( 3, 2 ), Eigen::Vector3d( 0, 0, 1 ) );
+        QCOMPARE( Eigen::VectorXd::Unit( 3, 2 ), Eigen::Vector3d::UnitZ() );
+    }
+
     // ノルム
     {
         QCOMPARE( v3.norm(), 5.0 );  // 大きさ(L2ノルム)
@@ -230,6 +247,34 @@ void Basic::n_vector()
         // normalize()は、正規化する
         v3.normalize();
         QCOMPARE( v3, Eigen::Vector2d( 0.6, 0.8 ) );
+    }
+}
+
+/**
+ * @brief ベクトルの内積、外積
+ */
+void Basic::vector_product()
+{
+    using Eigen::Vector3d;
+
+    Vector3d v1( 0, 1, 2 );
+    Vector3d v2( 1, 2, 3 );
+
+    // 内積
+    auto&& inner = v1.dot( v2 );
+    QCOMPARE( inner, 8 );
+
+    // 外積
+    auto&& outer = v1.cross( v2 );
+    QCOMPARE( outer, Vector3d( -1, 2, -1 ) );
+
+    {
+        // inner = |v1|・|v2|・cosθ -> θ = acos( inner / |v1|・|v2| )
+        auto&& angle = acos( inner / v1.norm() / v2.norm() );
+        // v1とv2の三角形の面積
+        auto&& area = 0.5 * v1.norm() * v2.norm() * sin( angle );
+        // 外積の大きさは、v1とv2の平行四辺形の面積に等しい
+        QCOMPARE( outer.norm(), area );
     }
 }
 
