@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="FooService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FooServer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -8,15 +8,18 @@ using Grpc.Core;
 
 namespace FooClient
 {
+    using Foo.Core;
+
     class Program
     {
-        public static int Port => 16880;
+        public static int Port => 168080;
 
         static void Main( string[] args )
         {
             Channel channel = new Channel( "localhost", Port, ChannelCredentials.Insecure );
 
             var client = new Foo.FooService.FooServiceClient( channel );
+            //var client = new FooClient( "localhost", Port );
 
             var input = string.Empty;
             while ( string.Compare( input, "q", true ) != 0 )

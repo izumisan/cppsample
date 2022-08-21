@@ -12,13 +12,14 @@ namespace Foo.Core.Tests
     [TestFixture]
     public class FooServiceTest
     {
-        // テスト実行できない
-
         [Test]
+        [Ignore( "このテストは実行できない" )]
         public void Basicテスト()
         {
             var foo = new FooService();
-            var ret = foo.Sleep( new SleepRequest { Seconds = 3 }, null );
+            var req = new SleepRequest { Seconds = 3 };
+            // ここで無理やりSleep()を呼ぶため、第2引数にnullを入れているのは流石にダメっぽい
+            var ret = foo.Sleep( req, null );
             Assert.That( ret, Is.EqualTo( 3 ) );
         }
     }
