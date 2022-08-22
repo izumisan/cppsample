@@ -80,6 +80,10 @@
       <Project>{c7fe67ba-4767-4a3c-8d0d-c8d8db58ec9c}</Project>
       <Name>Foo.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FooServer\FooServer.csproj">
+      <Project>{2cc3b089-f0d5-4985-ab39-d1b96a802d25}</Project>
+      <Name>FooServer</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
