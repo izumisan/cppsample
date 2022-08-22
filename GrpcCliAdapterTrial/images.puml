@@ -1,0 +1,16 @@
+@startuml component
+' skinparam componentStyle uml2
+
+component FooLib <<C++ library>>
+component FooAdapter <<C++/CLI library>>
+component Foo.Core <<C# library>>
+component FooServer <<C# executable>>
+component FooClient <<C# executable>>
+component gRPC <<nuget>>
+
+FooServer -up-> Foo.Core
+FooClient -up-> Foo.Core
+Foo.Core -up-> FooAdapter
+FooAdapter -up-> FooLib
+Foo.Core -> gRPC
+@enduml
